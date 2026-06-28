@@ -52,7 +52,7 @@ export function HomepageHero() {
               </motion.h1>
 
               <motion.p className="hero-tagline" variants={itemVariants}>
-                continuously evolving / Underground Electronic Music / UK
+                continuous evolution / Underground Electronic Music / UK
               </motion.p>
             </div>
 
