@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-const LOGO_SRC = "/images/Source Control art/01_3.png";
+const LOGO_SRC = "/images/source-control-assets/01_3.webp";
 
 type SiteLogoProps = {
   onClick?: () => void;

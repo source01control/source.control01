@@ -29,10 +29,10 @@ export const events: Event[] = [
     titleLines: ["Dungeon Beats x", "Source Control"],
     date: "21.11.25",
     artwork:
-      "/images/Events/Dungeon Beats x Source Control/artwork/SC x DB Art.jpg",
+      "/images/events/Dungeon Beats x Source Control/artwork/SC x DB Art.webp",
     alt: "Dungeon Beats x Source Control event artwork",
     galleryDir:
-      "/images/Events/Dungeon Beats x Source Control/event pics",
+      "/images/events/Dungeon Beats x Source Control/event pics",
     listen: [
       {
         label: "ChrisNSA promo mix",

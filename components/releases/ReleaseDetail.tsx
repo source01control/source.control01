@@ -15,12 +15,12 @@ function formatReleaseArtist(artist: string): string {
 const buyPlatforms = [
   {
     id: "bandcamp",
-    icon: "/images/bandcamp-icon.svg",
+    icon: "/images/store logos/bandcamp-logo.webp",
     label: "BANDCAMP",
   },
   {
     id: "beatport",
-    icon: "/images/beatport-icon.png",
+    icon: "/images/store logos/beatport-icon.webp",
     label: "BEATPORT",
   },
 ] as const;
@@ -28,22 +28,22 @@ const buyPlatforms = [
 const streamPlatforms = [
   {
     id: "spotify",
-    icon: "/images/spotify-icon.png",
+    icon: "/images/store logos/spotify-icon.webp",
     label: "SPOTIFY",
   },
   {
     id: "apple music",
-    icon: "/images/apple-music-icon.png",
+    icon: "/images/store logos/apple-music-icon.webp",
     label: "APPLE MUSIC",
   },
   {
     id: "youtube music",
-    icon: "/images/youtube-music-icon.png",
+    icon: "/images/store logos/youtube-music-icon.webp",
     label: "YOUTUBE MUSIC",
   },
   {
     id: "tidal",
-    icon: "/images/tidal-icon.png",
+    icon: "/images/store logos/tidal-icon.webp",
     label: "TIDAL",
     invert: true,
   },

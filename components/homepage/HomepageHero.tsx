@@ -58,7 +58,7 @@ export function HomepageHero() {
 
             <motion.div className="hero-brand-visual" variants={itemVariants}>
               <Image
-                src="/images/hero-tower.jpg"
+                src="/images/website-fx/hero-tower.webp"
                 alt="Transmission tower at dusk"
                 width={1024}
                 height={768}

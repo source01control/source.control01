@@ -11,7 +11,7 @@ type ArtistDetailProps = {
   artist: Artist;
 };
 
-const ARTIST_HERO_BACKGROUND = "/images/Source Control art/01.jpg";
+const ARTIST_HERO_BACKGROUND = "/images/source-control-assets/01.webp";
 
 const ARTISTS_WITH_HERO_BACKGROUND = new Set(["unkey", "mono-code", "0079"]);
 

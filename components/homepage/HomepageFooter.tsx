@@ -22,7 +22,7 @@ export function HomepageFooter() {
             aria-label="Instagram"
           >
             <img
-              src="/images/instagram-icon.png"
+              src="/images/store logos/instagram-icon.webp"
               alt=""
               className="homepage-footer-social-icon homepage-footer-social-icon--invert homepage-footer-social-icon--instagram"
             />
@@ -35,7 +35,7 @@ export function HomepageFooter() {
             aria-label="Soundcloud"
           >
             <img
-              src="/images/soundcloud-icon.png"
+              src="/images/store logos/soundcloud-icon.webp"
               alt=""
               className="homepage-footer-social-icon homepage-footer-social-icon--invert homepage-footer-social-icon--soundcloud"
             />
@@ -48,7 +48,7 @@ export function HomepageFooter() {
             aria-label="Bandcamp"
           >
             <img
-              src="/images/bandcamp-icon.svg"
+              src="/images/store logos/bandcamp-logo.webp"
               alt=""
               className="homepage-footer-social-icon homepage-footer-social-icon--bandcamp"
             />

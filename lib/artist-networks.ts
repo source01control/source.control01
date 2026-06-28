@@ -9,26 +9,26 @@ export type ArtistNetworkLink = {
 const networkPlatformLogos: ArtistNetworkLink[] = [
   {
     label: "Instagram",
-    icon: "/images/instagram-icon.png",
+    icon: "/images/store logos/instagram-icon.webp",
     invert: true,
   },
   {
     label: "Facebook",
-    icon: "/images/facebook-icon.svg",
+    icon: "/images/store logos/facebook-icon.webp",
     facebook: true,
   },
   {
     label: "Soundcloud",
-    icon: "/images/soundcloud-icon.png",
+    icon: "/images/store logos/soundcloud-icon.webp",
     invert: true,
   },
   {
     label: "Spotify",
-    icon: "/images/spotify-icon.png",
+    icon: "/images/store logos/spotify-icon.webp",
   },
   {
     label: "Bandcamp",
-    icon: "/images/bandcamp-icon.svg",
+    icon: "/images/store logos/bandcamp-logo.webp",
   },
 ];
 
@@ -64,30 +64,30 @@ export const artistNetworks: Record<string, ArtistNetwork> = {
       {
         label: "Instagram",
         href: "https://www.instagram.com/unkey_uk?igsh=MWF2YW9hd2wxbTl4eA==",
-        icon: "/images/instagram-icon.png",
+        icon: "/images/store logos/instagram-icon.webp",
         invert: true,
       },
       {
         label: "Facebook",
         href: "https://www.facebook.com/unkeyuk",
-        icon: "/images/facebook-icon.svg",
+        icon: "/images/store logos/facebook-icon.webp",
         facebook: true,
       },
       {
         label: "Soundcloud",
         href: "https://soundcloud.com/unkey",
-        icon: "/images/soundcloud-icon.png",
+        icon: "/images/store logos/soundcloud-icon.webp",
         invert: true,
       },
       {
         label: "Spotify",
         href: "https://open.spotify.com/artist/4RCLOZtadG5NfdrNLAhzBd?si=5ymECO9cTROV0mXbuprp6Q",
-        icon: "/images/spotify-icon.png",
+        icon: "/images/store logos/spotify-icon.webp",
       },
       {
         label: "Bandcamp",
         href: "https://unkey.bandcamp.com",
-        icon: "/images/bandcamp-icon.svg",
+        icon: "/images/store logos/bandcamp-logo.webp",
       },
     ],
   },

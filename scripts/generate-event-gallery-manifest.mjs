@@ -10,16 +10,37 @@ const galleryDirs = [
 
 const imagePattern = /\.(jpe?g|png|webp)$/i;
 
+function getStem(filename) {
+  return filename.replace(/\.(jpe?g|png|webp)$/i, "");
+}
+
+function pickPreferredImage(files) {
+  const webp = files.find((file) => /\.webp$/i.test(file));
+  if (webp) return webp;
+
+  return files.find((file) => /\.(jpe?g|png)$/i.test(file)) ?? files[0];
+}
+
 function getGalleryPhotos(galleryDir) {
   const relativeDir = galleryDir.replace(/^\/+/, "");
   const dirPath = path.join(root, "public", relativeDir);
 
   if (!fs.existsSync(dirPath)) return [];
 
-  return fs
-    .readdirSync(dirPath)
-    .filter((file) => imagePattern.test(file))
-    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+  const imagesByStem = new Map();
+
+  for (const file of fs.readdirSync(dirPath)) {
+    if (!imagePattern.test(file)) continue;
+
+    const stem = getStem(file);
+    const group = imagesByStem.get(stem) ?? [];
+    group.push(file);
+    imagesByStem.set(stem, group);
+  }
+
+  return [...imagesByStem.entries()]
+    .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+    .map(([, files]) => pickPreferredImage(files))
     .map((file) => `/${relativeDir}/${file}`.replace(/\/{2,}/g, "/"));
 }
 

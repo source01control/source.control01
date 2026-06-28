@@ -45,7 +45,7 @@ export const artists: Artist[] = [
     bio: "Unkey is another producer who effortlessly explores the darker side of bass-driven dance music, seemingly drawing inspiration from stripped-back Grime instrumentals and two-step rhythms.\n\nThe Midlands based talent has released on such labels as Artikal Music, Dungeon Beats, Uprise Audio, and more. His sound is a high-octane amalgamation of the many strains of UK bass-centric music, often with a melodic and rhythmic flair that typifies his tracks. Unkey is also founder of the Source Control label and an accomplished DJ/producer bagging up airtime on staple stations such as BBC Radio 1, 6 Music, 1 Xtra, Rinse fm and SWU.fm. There's no doubt we will be hearing much more from him in the years to come.",
     origin: "SOUTH LONDON",
     catalog: "SC_001",
-    image: { url: "/images/artists/unkey summer.jpg", alt: "Unkey" },
+    image: { url: "/images/artists/unkey summer.webp", alt: "Unkey" },
   },
   {
     id: "mono-code",
@@ -55,7 +55,7 @@ export const artists: Artist[] = [
     bio: "Starting his production career under the alias Deft Design, McEndoo rebranded as Mono Code to pursue a more focused underground sound. His work is deeply tied to the foundational dubstep scene, favoring a high-tech, futuristic, and sub-heavy aesthetic. His discography spans various cutting-edge electronic subgenres while keeping the raw \"sub low\" and rugged rhythm sections of UK club culture at the core.",
     origin: "MANCHESTER",
     catalog: "SC_002",
-    image: { url: "/images/artists/mono code dj.jpg", alt: "Mono Code" },
+    image: { url: "/images/artists/mono code dj.webp", alt: "Mono Code" },
   },
   {
     id: "0079",
@@ -221,5 +221,5 @@ export const navLinks = [
   { href: "/contact", label: "CONTACT" },
 ] as const;
 
-export const heroImage = "/images/hero-building.svg";
+export const heroImage = "/images/website-fx/hero-tower.webp";
 export const mixAtmosphereImage = "/images/mix-tunnel.svg";

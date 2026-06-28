@@ -11,11 +11,11 @@ type EventDetailProps = {
 
 const platformAssets = {
   youtube: {
-    icon: "/images/youtube-icon.svg",
+    icon: "/images/store logos/youtube-icon.webp",
     logoClass: "event-media-link__logo",
   },
   soundcloud: {
-    icon: "/images/soundcloud-icon.png",
+    icon: "/images/store logos/soundcloud-icon.webp",
     logoClass: "event-media-link__logo event-media-link__logo--soundcloud",
   },
 } as const;
