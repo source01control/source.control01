@@ -19,6 +19,7 @@ export type Release = {
   href: string;
   image: string;
   detailImage?: string;
+  artworkVideo?: string;
   alt: string;
   tracklist: ReleaseTrack[];
   streamingLinks: StreamingLink[];
@@ -155,6 +156,7 @@ const releasesData: Omit<Release, "slug" | "href">[] = [
     releaseDate: "2025-08-09",
     image: "/images/releases/SCTRL004.webp",
     detailImage: "/images/releases/detail/SCTRL004.webp",
+    artworkVideo: "/videos/releases/Blink of an Eye/eye-blinking.mp4",
     alt: "SCTRL004 Blink Of An Eye artwork",
     about:
       "Following his collaboration with Unkey on the Tech One EP, Mono Code (fka Deft Design) returns to Source Control with Blink Of An Eye. A deep, dark, and precision-crafted solo debut that showcases his evolved sound across four tightly focused tracks.",

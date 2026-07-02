@@ -105,14 +105,27 @@ export function ReleaseDetail({ release }: ReleaseDetailProps) {
       >
         <div className="release-detail-grid">
           <div className="release-detail-artwork relative overflow-hidden bg-black/20">
-            <Image
-              src={release.detailImage ?? release.image}
-              alt={release.alt}
-              fill
-              priority
-              className="object-cover"
-              sizes="(max-width: 1023px) 75vw, 41vw"
-            />
+            {release.artworkVideo ? (
+              <video
+                src={encodeURI(release.artworkVideo)}
+                poster={encodeURI(release.detailImage ?? release.image)}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 h-full w-full object-cover"
+                aria-label={release.alt}
+              />
+            ) : (
+              <Image
+                src={release.detailImage ?? release.image}
+                alt={release.alt}
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 1023px) 75vw, 41vw"
+              />
+            )}
           </div>
 
           <div
