@@ -466,6 +466,22 @@ body.release-page-with-video .site-header-bar {
   }
 }
 
+@media (max-width: 1023px) {
+  .release-detail--release-page .release-detail-panel {
+    padding-bottom: 3rem;
+  }
+
+  .release-detail--release-page .release-detail-content--with-bg {
+    aspect-ratio: 1 / 1.2;
+    padding-bottom: 2rem;
+  }
+
+  .release-detail--release-page
+    .release-detail-content:not(.release-detail-content--with-bg) {
+    padding-bottom: 2.5rem;
+  }
+}
+
 .release-detail-header {
   display: flex;
   flex-direction: column;

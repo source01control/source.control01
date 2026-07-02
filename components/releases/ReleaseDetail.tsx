@@ -82,7 +82,7 @@ export function ReleaseDetail({ release }: ReleaseDetailProps) {
   return (
     <article
       className={cn(
-        "release-detail relative w-full bg-black release-detail--compact-platforms",
+        "release-detail release-detail--release-page relative w-full bg-black release-detail--compact-platforms",
         release.backgroundVideo && "release-detail--with-video"
       )}
     >
