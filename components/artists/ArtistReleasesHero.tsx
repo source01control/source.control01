@@ -25,7 +25,7 @@ export function ArtistReleasesHero({
       aria-label={`${artistName} releases`}
     >
       <div className="release-detail-actions-grid">
-        <div className="release-detail-actions-col">
+        <div className="release-detail-actions-col artist-releases-hero__releases-col">
           <h2 className="release-detail-actions-title">Releases</h2>
           <ul className="release-detail-platform-links artist-releases-hero__list">
             {releases.map((release) => (

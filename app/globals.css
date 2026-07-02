@@ -719,6 +719,17 @@ body.release-page-with-video .site-header-bar {
   color: #fff;
 }
 
+.release-detail--compact-platforms .release-detail-platform-link__icon,
+.release-detail--compact-platforms .release-detail-platform-link__logo,
+.release-detail--compact-platforms .release-detail-platform-link__logo--facebook {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.release-detail--compact-platforms .release-detail-platform-link__label {
+  font-size: clamp(0.455rem, 0.896vw, 0.525rem);
+}
+
 @media (min-width: 768px) {
   .release-detail-actions-grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -803,97 +814,6 @@ body.release-page-with-video .site-header-bar {
 .release-detail-actions--watch-back .release-detail-actions-title {
   width: 100%;
   text-align: center;
-}
-
-.release-detail-actions--watch-back
-  .release-detail-actions-col--stream
-  .release-detail-platform-link {
-  display: grid;
-  width: min(100%, 24rem);
-  grid-template-columns: 3.5rem minmax(0, 1fr);
-  align-items: center;
-  column-gap: 0.75rem;
-}
-
-.release-detail-actions--watch-back
-  .release-detail-actions-col--stream
-  .release-detail-platform-link__icon {
-  width: 3.5rem;
-  height: 3.5rem;
-}
-
-.release-detail-actions--watch-back
-  .release-detail-actions-col--stream
-  .release-detail-platform-link__logo {
-  width: 3.5rem;
-  height: 3.5rem;
-}
-
-.release-detail-actions--watch-back
-  .release-detail-actions-col--stream
-  .release-detail-platform-link__label {
-  text-align: left;
-}
-
-.event-media-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  text-align: center;
-}
-
-.event-media-col .release-detail-actions-title {
-  margin-bottom: 0;
-}
-
-.event-media-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  width: auto;
-  max-width: 100%;
-  text-decoration: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.event-media-link__label {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  line-height: 0.9;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-  transition: color 0.3s ease;
-  text-align: center;
-}
-
-.event-media-link:hover {
-  transform: scale(1.04);
-}
-
-.event-media-link:hover .event-media-link__label {
-  color: #fff;
-}
-
-.event-media-link__logo {
-  display: block;
-  width: 3.5rem;
-  height: 3.5rem;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: 0.45;
-  transition: opacity 0.3s ease;
-}
-
-.event-media-link__logo--soundcloud {
-  transform: scale(1.05);
-}
-
-.event-media-link:hover .event-media-link__logo {
-  opacity: 1;
 }
 
 .event-gallery-layout {
@@ -1048,6 +968,10 @@ body.release-page-with-video .site-header-bar {
   background: #000;
 }
 
+.artist-releases-hero .release-detail-actions-col {
+  align-items: center;
+}
+
 .artist-releases-hero__list {
   margin: 0;
   padding: 0;
@@ -1056,11 +980,13 @@ body.release-page-with-video .site-header-bar {
 
 .artist-releases-hero__list li {
   width: min(100%, 20rem);
+  margin-inline: auto;
 }
 
 .artist-releases-hero__link {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.375rem;
   width: 100%;
   text-decoration: none;
@@ -1078,11 +1004,11 @@ body.release-page-with-video .site-header-bar {
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.45);
-  text-align: left;
+  text-align: center;
 }
 
 .artist-releases-hero__link .release-detail-platform-link__label {
-  text-align: left;
+  text-align: center;
 }
 
 .release-detail-lower {

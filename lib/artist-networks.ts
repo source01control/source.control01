@@ -14,7 +14,7 @@ const networkPlatformLogos: ArtistNetworkLink[] = [
   },
   {
     label: "Facebook",
-    icon: "/images/store logos/facebook-icon.webp",
+    icon: "/images/store logos/facebook-icon.svg",
     facebook: true,
   },
   {
@@ -70,7 +70,7 @@ export const artistNetworks: Record<string, ArtistNetwork> = {
       {
         label: "Facebook",
         href: "https://www.facebook.com/unkeyuk",
-        icon: "/images/store logos/facebook-icon.webp",
+        icon: "/images/store logos/facebook-icon.svg",
         facebook: true,
       },
       {

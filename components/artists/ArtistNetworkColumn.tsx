@@ -53,10 +53,12 @@ export function ArtistNetworkColumn({ network }: ArtistNetworkColumnProps) {
     <>
       <h2 className="release-detail-actions-title">{network.title}</h2>
       {network.links.length > 0 ? (
-        <div className="release-detail-platform-links">
-          {network.links.map((link) => (
-            <NetworkPlatformRow key={link.label} link={link} />
-          ))}
+        <div className="release-detail--compact-platforms">
+          <div className="release-detail-platform-links">
+            {network.links.map((link) => (
+              <NetworkPlatformRow key={link.label} link={link} />
+            ))}
+          </div>
         </div>
       ) : null}
     </>

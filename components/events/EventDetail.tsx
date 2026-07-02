@@ -9,56 +9,43 @@ type EventDetailProps = {
   galleryPhotos?: string[];
 };
 
-const platformAssets = {
-  youtube: {
-    icon: "/images/store logos/youtube-icon.webp",
-    logoClass: "event-media-link__logo",
-  },
-  soundcloud: {
-    icon: "/images/store logos/soundcloud-icon.webp",
-    logoClass: "event-media-link__logo event-media-link__logo--soundcloud",
-  },
+const platformIcons = {
+  youtube: "/images/store logos/youtube-icon.webp",
+  soundcloud: "/images/store logos/soundcloud-icon.webp",
 } as const;
+
+function renderPlatformLink(
+  item: EventPlatformLink,
+  ariaPrefix: "Listen" | "Watch back"
+) {
+  return (
+    <ExternalLink
+      key={`${item.platform}-${item.label}-${item.href}`}
+      href={item.href}
+      className="release-detail-platform-link"
+      aria-label={`${ariaPrefix}: ${item.label}`}
+    >
+      <span className="release-detail-platform-link__icon">
+        <img
+          src={platformIcons[item.platform]}
+          alt=""
+          className={cn(
+            "release-detail-platform-link__logo",
+            item.platform === "soundcloud" &&
+              "release-detail-platform-link__logo--invert"
+          )}
+        />
+      </span>
+      <span className="release-detail-platform-link__label">{item.label}</span>
+    </ExternalLink>
+  );
+}
 
 export function EventDetail({ event, galleryPhotos = [] }: EventDetailProps) {
   const listenLinks = event.listen ?? [];
   const watchBackLinks = event.watchBack ?? [];
   const showMediaSection = listenLinks.length > 0 || watchBackLinks.length > 0;
   const hasGallery = galleryPhotos.length > 0;
-
-  const renderListenLink = (item: EventPlatformLink) => {
-    const platform = platformAssets[item.platform];
-
-    return (
-      <ExternalLink
-        key={`${item.platform}-${item.label}-${item.href}`}
-        href={item.href}
-        className="event-media-link"
-        aria-label={`Listen: ${item.label}`}
-      >
-        <img src={platform.icon} alt="" className={platform.logoClass} />
-        <span className="event-media-link__label">{item.label}</span>
-      </ExternalLink>
-    );
-  };
-
-  const renderWatchBackLink = (item: EventPlatformLink) => (
-    <ExternalLink
-      key={`${item.platform}-${item.label}-${item.href}`}
-      href={item.href}
-      className="release-detail-platform-link"
-      aria-label={`Watch back: ${item.label}`}
-    >
-      <span className="release-detail-platform-link__icon">
-        <img
-          src={platformAssets.youtube.icon}
-          alt=""
-          className="release-detail-platform-link__logo"
-        />
-      </span>
-      <span className="release-detail-platform-link__label">{item.label}</span>
-    </ExternalLink>
-  );
 
   return (
     <article className="release-detail release-detail--event relative w-full overflow-x-hidden bg-black">
@@ -139,16 +126,22 @@ export function EventDetail({ event, galleryPhotos = [] }: EventDetailProps) {
               {showMediaSection ? (
                 <div className="release-detail-actions-grid">
                   {listenLinks.length > 0 ? (
-                    <div className="release-detail-actions-col event-media-col event-media-col--listen">
+                    <div className="release-detail-actions-col">
                       <h2 className="release-detail-actions-title">Listen</h2>
-                      {listenLinks.map(renderListenLink)}
+                      <div className="release-detail-platform-links">
+                        {listenLinks.map((item) =>
+                          renderPlatformLink(item, "Listen")
+                        )}
+                      </div>
                     </div>
                   ) : null}
                   {watchBackLinks.length > 0 ? (
                     <div className="release-detail-actions-col release-detail-actions-col--stream">
                       <h2 className="release-detail-actions-title">Watch Back</h2>
                       <div className="release-detail-platform-links">
-                        {watchBackLinks.map(renderWatchBackLink)}
+                        {watchBackLinks.map((item) =>
+                          renderPlatformLink(item, "Watch back")
+                        )}
                       </div>
                     </div>
                   ) : null}
