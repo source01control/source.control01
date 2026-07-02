@@ -48,7 +48,7 @@ export function EventPhotoCarousel({
           fill
           unoptimized
           className="object-cover"
-          sizes="(max-width: 1023px) 50vw, 18rem"
+          sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 18rem"
           priority={index === 0}
         />
       </div>

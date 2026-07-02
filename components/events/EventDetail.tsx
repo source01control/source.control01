@@ -53,7 +53,7 @@ export function EventDetail({ event, galleryPhotos = [] }: EventDetailProps) {
         <img
           src={platformAssets.youtube.icon}
           alt=""
-          className="release-detail-platform-link__logo release-detail-platform-link__logo--invert"
+          className="release-detail-platform-link__logo"
         />
       </span>
       <span className="release-detail-platform-link__label">{item.label}</span>

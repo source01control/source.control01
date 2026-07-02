@@ -985,6 +985,48 @@ body.release-page-with-video .site-header-bar {
   color: rgba(255, 255, 255, 0.45);
 }
 
+@media (max-width: 767px) {
+  .release-detail-actions--event .event-gallery-layout {
+    width: 100vw;
+    max-width: none;
+    margin-inline: calc(50% - 50vw);
+    margin-bottom: 2.5rem;
+  }
+
+  .release-detail-actions--event .event-gallery-col {
+    width: 100%;
+  }
+
+  .event-gallery-col .section-label {
+    padding-inline: 1rem;
+  }
+
+  .event-gallery {
+    position: relative;
+  }
+
+  .event-gallery__frame {
+    aspect-ratio: auto;
+    height: 100svh;
+    height: 100dvh;
+  }
+
+  .event-gallery__controls {
+    position: absolute;
+    inset: auto 0 max(1.25rem, env(safe-area-inset-bottom));
+    margin-top: 0;
+    justify-content: center;
+    z-index: 1;
+    padding-top: 3rem;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.72) 0%,
+      rgba(0, 0, 0, 0.35) 45%,
+      transparent 100%
+    );
+  }
+}
+
 .release-detail-actions .release-detail-bottom-link {
   font-size: 11px;
 }
