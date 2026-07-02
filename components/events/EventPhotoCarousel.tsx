@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import { orderGalleryPhotos } from "@/lib/utils";
 
 type EventPhotoCarouselProps = {
   photos: string[];
@@ -13,8 +14,14 @@ export function EventPhotoCarousel({
   photos,
   altPrefix,
 }: EventPhotoCarouselProps) {
+  const [orderedPhotos, setOrderedPhotos] = useState<string[]>([]);
   const [index, setIndex] = useState(0);
-  const total = photos.length;
+  const total = orderedPhotos.length;
+
+  useEffect(() => {
+    setOrderedPhotos(orderGalleryPhotos(photos));
+    setIndex(0);
+  }, [photos]);
 
   const goPrev = useCallback(() => {
     setIndex((current) => (current - 1 + total) % total);
@@ -36,7 +43,7 @@ export function EventPhotoCarousel({
 
   if (total === 0) return null;
 
-  const currentPhoto = photos[index];
+  const currentPhoto = orderedPhotos[index];
 
   return (
     <div className="event-gallery">
