@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink } from "@/components/ExternalLink";
+import { SITE_LOGO_SRC } from "@/components/SiteLogo";
 import type { Release } from "@/lib/releases";
 import { cn } from "@/lib/utils";
 import { ReleaseBackgroundVideo } from "./ReleaseBackgroundVideo";
@@ -28,7 +29,6 @@ const buyPlatforms = [
 
 const SOURCE_CONTROL_STORE_LINK = {
   href: "/store",
-  icon: "/images/source-control-assets/01.webp",
   label: "Source Control Store",
 } as const;
 
@@ -197,11 +197,11 @@ export function ReleaseDetail({ release }: ReleaseDetailProps) {
                     className="release-detail-platform-link"
                     aria-label={`Buy on ${SOURCE_CONTROL_STORE_LINK.label}`}
                   >
-                    <span className="release-detail-platform-link__icon">
+                    <span className="release-detail-platform-link__icon release-detail-platform-link__icon--site-logo">
                       <img
-                        src={SOURCE_CONTROL_STORE_LINK.icon}
+                        src={SITE_LOGO_SRC}
                         alt=""
-                        className="release-detail-platform-link__logo release-detail-platform-link__logo--source-control"
+                        className="release-detail-platform-link__logo release-detail-platform-link__logo--invert release-detail-platform-link__logo--site"
                       />
                     </span>
                     <span className="release-detail-platform-link__label">

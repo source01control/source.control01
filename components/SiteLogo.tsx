@@ -2,7 +2,35 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-const LOGO_SRC = "/images/source-control-assets/01_3.webp";
+export const SITE_LOGO_SRC = "/images/source-control-assets/01_3.webp";
+
+type SiteLogoMarkProps = {
+  className?: string;
+  sizes?: string;
+  alt?: string;
+  priority?: boolean;
+};
+
+export function SiteLogoMark({
+  className,
+  sizes = "96px",
+  alt = "",
+  priority = false,
+}: SiteLogoMarkProps) {
+  return (
+    <Image
+      src={SITE_LOGO_SRC}
+      alt={alt}
+      fill
+      priority={priority}
+      sizes={sizes}
+      className={cn(
+        "object-contain scale-[1.55] origin-center brightness-0 invert",
+        className
+      )}
+    />
+  );
+}
 
 type SiteLogoProps = {
   onClick?: () => void;
@@ -19,13 +47,10 @@ export function SiteLogo({ onClick, className }: SiteLogoProps) {
         className
       )}
     >
-      <Image
-        src={LOGO_SRC}
+      <SiteLogoMark
         alt="Source Control"
-        fill
         priority
-        sizes="96px"
-        className="object-contain scale-[1.55] origin-center brightness-0 invert opacity-80 transition-opacity group-hover:opacity-100"
+        className="opacity-80 transition-opacity group-hover:opacity-100"
       />
     </Link>
   );

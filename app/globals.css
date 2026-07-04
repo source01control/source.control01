@@ -737,16 +737,25 @@ body.release-page-with-video .site-header-bar {
 
 .release-detail--compact-platforms .release-detail-platform-link__icon,
 .release-detail--compact-platforms .release-detail-platform-link__logo,
-.release-detail--compact-platforms .release-detail-platform-link__logo--facebook,
-.release-detail--compact-platforms .release-detail-platform-link__logo--source-control {
+.release-detail--compact-platforms .release-detail-platform-link__logo--facebook {
   width: 1.4rem;
   height: 1.4rem;
 }
 
-.release-detail-platform-link__logo--source-control {
-  object-fit: contain;
-  transform: scale(1.85);
-  transform-origin: center;
+.release-detail-platform-link__icon--site-logo {
+  overflow: hidden;
+}
+
+/* Logo artwork has padding; render larger and clip (avoids blurry CSS upscale). */
+.release-detail-platform-link__logo--site {
+  width: 6.75rem;
+  height: 6.75rem;
+  max-width: none;
+}
+
+.release-detail--compact-platforms .release-detail-platform-link__logo--site {
+  width: 3.78rem;
+  height: 3.78rem;
 }
 
 .release-detail--compact-platforms .release-detail-platform-link__label {
