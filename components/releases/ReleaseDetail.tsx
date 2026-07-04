@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ExternalLink } from "@/components/ExternalLink";
 import type { Release } from "@/lib/releases";
 import { cn } from "@/lib/utils";
@@ -24,6 +25,12 @@ const buyPlatforms = [
     label: "BEATPORT",
   },
 ] as const;
+
+const SOURCE_CONTROL_STORE_LINK = {
+  href: "/store",
+  icon: "/images/source-control-assets/01.webp",
+  label: "Source Control Store",
+} as const;
 
 const streamPlatforms = [
   {
@@ -184,34 +191,48 @@ export function ReleaseDetail({ release }: ReleaseDetailProps) {
             <div className="release-detail-actions-grid">
               <div className="release-detail-actions-col">
                 <h2 className="release-detail-actions-title">Buy</h2>
-                {buyLinks.length > 0 ? (
-                  <div className="release-detail-platform-links">
-                    {buyLinks.map((link) => (
-                      <ExternalLink
-                        key={link.id}
-                        href={link.href}
-                        className="release-detail-platform-link"
-                        aria-label={`Buy on ${link.label}`}
-                      >
-                        <span className="release-detail-platform-link__icon">
-                          <img
-                            src={link.icon}
-                            alt=""
-                            className={cn(
-                              "release-detail-platform-link__logo",
-                              "invert" in link && link.invert
-                                ? "release-detail-platform-link__logo--invert"
-                                : undefined
-                            )}
-                          />
-                        </span>
-                        <span className="release-detail-platform-link__label">
-                          {link.label}
-                        </span>
-                      </ExternalLink>
-                    ))}
-                  </div>
-                ) : null}
+                <div className="release-detail-platform-links">
+                  <Link
+                    href={SOURCE_CONTROL_STORE_LINK.href}
+                    className="release-detail-platform-link"
+                    aria-label={`Buy on ${SOURCE_CONTROL_STORE_LINK.label}`}
+                  >
+                    <span className="release-detail-platform-link__icon">
+                      <img
+                        src={SOURCE_CONTROL_STORE_LINK.icon}
+                        alt=""
+                        className="release-detail-platform-link__logo release-detail-platform-link__logo--source-control"
+                      />
+                    </span>
+                    <span className="release-detail-platform-link__label">
+                      {SOURCE_CONTROL_STORE_LINK.label}
+                    </span>
+                  </Link>
+                  {buyLinks.map((link) => (
+                    <ExternalLink
+                      key={link.id}
+                      href={link.href}
+                      className="release-detail-platform-link"
+                      aria-label={`Buy on ${link.label}`}
+                    >
+                      <span className="release-detail-platform-link__icon">
+                        <img
+                          src={link.icon}
+                          alt=""
+                          className={cn(
+                            "release-detail-platform-link__logo",
+                            "invert" in link && link.invert
+                              ? "release-detail-platform-link__logo--invert"
+                              : undefined
+                          )}
+                        />
+                      </span>
+                      <span className="release-detail-platform-link__label">
+                        {link.label}
+                      </span>
+                    </ExternalLink>
+                  ))}
+                </div>
               </div>
 
               <div className="release-detail-actions-col release-detail-actions-col--stream">

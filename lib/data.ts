@@ -218,6 +218,7 @@ export const navLinks = [
   { href: "/artists", label: "ARTISTS" },
   { href: "/releases", label: "RELEASES" },
   { href: "/events", label: "EVENTS" },
+  { href: "/store", label: "STORE" },
   { href: "/contact", label: "CONTACT" },
 ] as const;
 

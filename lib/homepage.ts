@@ -3,7 +3,7 @@ export const homepageNav = [
   { label: "Artists", href: "/artists" },
   { label: "Releases", href: "/releases" },
   { label: "Events", href: "/events" },
-  { label: "Merchandise", href: "#merchandise" },
+  { label: "Store", href: "/store" },
   { label: "Mixes", href: "#mixes" },
 ] as const;
 
