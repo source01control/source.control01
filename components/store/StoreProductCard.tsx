@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
-import type { StoreProduct } from "@/lib/store";
+import { getStoreProductPath, type StoreProduct } from "@/lib/store";
+import { StoreDownloadFormatOptions } from "./StoreDownloadFormatOptions";
 import { cn } from "@/lib/utils";
 
 type StoreProductCardProps = {
@@ -20,6 +22,8 @@ export function StoreProductCard({ product }: StoreProductCardProps) {
   const hasDownloadFormats =
     product.category === "digital" && Boolean(product.downloadFormats?.length);
 
+  const isSamplePack = product.category === "sample-packs";
+
   const formatLabel =
     product.category === "bundles"
       ? "BUNDLE"
@@ -36,13 +40,12 @@ export function StoreProductCard({ product }: StoreProductCardProps) {
     <article
       className={cn(
         "store-product-card group",
-        hasDownloadFormats && "store-product-card--digital",
-        overlayOpen && "store-product-card--overlay-open"
+        hasDownloadFormats && "store-product-card--digital"
       )}
     >
       <div
         className={cn(
-          "store-product-card__artwork",
+          "store-product-card__artwork relative aspect-square w-full overflow-hidden bg-[#0a0a0a]",
           hasDownloadFormats && "store-product-card__artwork--interactive"
         )}
         onClick={toggleOverlay}
@@ -65,23 +68,32 @@ export function StoreProductCard({ product }: StoreProductCardProps) {
           src={product.image}
           alt={product.alt}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          className={cn(
+            "object-cover",
+            !hasDownloadFormats &&
+              "transition-transform duration-500 group-hover:scale-[1.03]"
+          )}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
 
         {hasDownloadFormats && product.downloadFormats ? (
-          <div className="store-product-card__overlay" aria-hidden={!overlayOpen}>
-            {product.downloadFormats.map((option) => (
-              <button
-                key={option.format}
-                type="button"
-                className="store-product-card__format-option font-[family-name:var(--font-mono)]"
-                onClick={(event) => event.stopPropagation()}
-              >
-                <span>{option.label} Release</span>
-                <span>{option.priceLabel}</span>
-              </button>
-            ))}
+          <div
+            className={cn(
+              "store-product-card__overlay",
+              overlayOpen && "store-product-card__overlay--visible"
+            )}
+          >
+            <StoreDownloadFormatOptions
+              options={product.downloadFormats}
+              variant="overlay"
+            />
+            <Link
+              href={getStoreProductPath(product.id)}
+              className="store-product-card__view-product font-[family-name:var(--font-mono)]"
+              onClick={(event) => event.stopPropagation()}
+            >
+              VIEW PRODUCT
+            </Link>
           </div>
         ) : null}
       </div>
@@ -101,19 +113,30 @@ export function StoreProductCard({ product }: StoreProductCardProps) {
           {product.title}
         </h2>
 
-        {product.artist ? (
+        {product.artist && !isSamplePack ? (
           <p className="store-product-card__artist font-[family-name:var(--font-mono)] uppercase">
             {product.artist}
           </p>
         ) : null}
 
         <div className="store-product-card__footer">
-          <p className="store-product-card__price font-[family-name:var(--font-mono)]">
-            {product.priceLabel}
-          </p>
-          <button type="button" className="store-product-card__button">
-            ADD TO CART
-          </button>
+          {isSamplePack ? (
+            <Link
+              href={getStoreProductPath(product.id)}
+              className="store-product-card__sample-link font-[family-name:var(--font-mono)] uppercase"
+            >
+              Get Free Sample Pack
+            </Link>
+          ) : (
+            <>
+              <p className="store-product-card__price font-[family-name:var(--font-mono)]">
+                {product.priceLabel}
+              </p>
+              <button type="button" className="store-product-card__button">
+                ADD TO CART
+              </button>
+            </>
+          )}
         </div>
       </div>
     </article>

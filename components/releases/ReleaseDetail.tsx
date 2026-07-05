@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink } from "@/components/ExternalLink";
 import { SITE_LOGO_SRC } from "@/components/SiteLogo";
+import { getReleaseDigitalStorePath } from "@/lib/store";
 import type { Release } from "@/lib/releases";
 import { cn } from "@/lib/utils";
 import { ReleaseBackgroundVideo } from "./ReleaseBackgroundVideo";
@@ -28,7 +29,6 @@ const buyPlatforms = [
 ] as const;
 
 const SOURCE_CONTROL_STORE_LINK = {
-  href: "/store",
   label: "Source Control Store",
 } as const;
 
@@ -193,7 +193,9 @@ export function ReleaseDetail({ release }: ReleaseDetailProps) {
                 <h2 className="release-detail-actions-title">Buy</h2>
                 <div className="release-detail-platform-links">
                   <Link
-                    href={SOURCE_CONTROL_STORE_LINK.href}
+                    href={
+                      getReleaseDigitalStorePath(release.id) ?? "/store"
+                    }
                     className="release-detail-platform-link"
                     aria-label={`Buy on ${SOURCE_CONTROL_STORE_LINK.label}`}
                   >

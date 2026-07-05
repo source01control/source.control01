@@ -1,6 +1,6 @@
 import { merchandise } from "@/lib/data";
+import { releases, type Release } from "@/lib/releases";
 import { SAMPLE_PACK_ARTWORK, samplePackHref } from "@/lib/sample-pack";
-import { releases } from "@/lib/releases";
 
 export type StoreCategory =
   | "all"
@@ -38,9 +38,30 @@ export type StoreProduct = {
 
 export const digitalDownloadFormats: StoreDownloadOption[] = [
   { format: "mp3", label: "MP3", priceLabel: "£6.00" },
-  { format: "flac", label: "FLAC", priceLabel: "£7.00" },
   { format: "wav", label: "WAV", priceLabel: "£8.00" },
+  { format: "flac", label: "FLAC", priceLabel: "£7.00" },
 ];
+
+export const digitalTrackPrices: Record<
+  DigitalDownloadFormat,
+  { price: number; priceLabel: string }
+> = {
+  mp3: { price: 1.5, priceLabel: "£1.50" },
+  wav: { price: 1.75, priceLabel: "£1.75" },
+  flac: { price: 2, priceLabel: "£2.00" },
+};
+
+export function getTrackPriceLabel(format: DigitalDownloadFormat): string {
+  return digitalTrackPrices[format].priceLabel;
+}
+
+export function getReleaseForStoreProduct(
+  product: StoreProduct
+): Release | undefined {
+  if (!product.id.endsWith("-digital")) return undefined;
+  const releaseId = product.id.replace(/-digital$/, "");
+  return releases.find((release) => release.id === releaseId);
+}
 
 export type StoreSort = "newest" | "price-asc" | "price-desc" | "title";
 
@@ -143,6 +164,19 @@ export const storeProducts: StoreProduct[] = [
   bundleProduct,
   samplePackProduct,
 ];
+
+export function getStoreProductById(id: string): StoreProduct | undefined {
+  return storeProducts.find((product) => product.id === id);
+}
+
+export function getStoreProductPath(id: string): string {
+  return `/store/${id}`;
+}
+
+export function getReleaseDigitalStorePath(releaseId: string): string | undefined {
+  const product = getStoreProductById(`${releaseId}-digital`);
+  return product ? getStoreProductPath(product.id) : undefined;
+}
 
 export function filterStoreProducts({
   category,

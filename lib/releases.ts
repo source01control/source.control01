@@ -2,6 +2,7 @@ export type ReleaseTrack = {
   number: string;
   title: string;
   duration?: string;
+  previewUrl?: string;
 };
 
 export type StreamingLink = {
@@ -75,10 +76,10 @@ const releasesData: Omit<Release, "slug" | "href">[] = [
     accentGradient:
       "linear-gradient(145deg, #111820 0%, #151d2e 38%, #1a2840 62%, #13181f 100%)",
     tracklist: [
-      { number: "A1", title: "Source Shift", duration: "4:42" },
-      { number: "A2", title: "Grid Lock", duration: "5:08" },
-      { number: "B1", title: "Null Return", duration: "4:19" },
-      { number: "B2", title: "Terminal Bloom", duration: "5:31" },
+      { number: "1", title: "Night Bus From Orion" },
+      { number: "2", title: "Source Shift" },
+      { number: "3", title: "Source Shift (Radio Edit)" },
+      { number: "4", title: "Stress Vector" },
     ],
     streamingLinks: [
       {
@@ -119,8 +120,9 @@ const releasesData: Omit<Release, "slug" | "href">[] = [
     accentGradient:
       "linear-gradient(145deg, #141518 0%, #1a1c22 42%, #1e2428 68%, #121416 100%)",
     tracklist: [
-      { number: "A", title: "Tech Two", duration: "4:56" },
-      { number: "B", title: "Concrete Pulse", duration: "4:28" },
+      { number: "1", title: "Black Dream" },
+      { number: "2", title: "Tech Two" },
+      { number: "3", title: "Drop It Down" },
     ],
     streamingLinks: [
       {
@@ -163,8 +165,10 @@ const releasesData: Omit<Release, "slug" | "href">[] = [
     accentGradient:
       "linear-gradient(145deg, #15121c 0%, #1e1929 44%, #221d32 66%, #141018 100%)",
     tracklist: [
-      { number: "A", title: "Blink Of An Eye", duration: "3:54" },
-      { number: "B", title: "Static Frame", duration: "4:11" },
+      { number: "1", title: "Attestupan" },
+      { number: "2", title: "Blink Of An Eye" },
+      { number: "3", title: "Hope Dies Last" },
+      { number: "4", title: "Serpent" },
     ],
     streamingLinks: [
       {
@@ -206,8 +210,8 @@ const releasesData: Omit<Release, "slug" | "href">[] = [
     accentGradient:
       "linear-gradient(145deg, #181012 0%, #221418 44%, #2a1a20 66%, #140e10 100%)",
     tracklist: [
-      { number: "A", title: "Dark/12", duration: "5:02" },
-      { number: "B", title: "Afterimage", duration: "4:37" },
+      { number: "1", title: "Dark" },
+      { number: "2", title: "12" },
     ],
     streamingLinks: [
       {
@@ -249,8 +253,10 @@ const releasesData: Omit<Release, "slug" | "href">[] = [
     accentGradient:
       "linear-gradient(145deg, #1a1012 0%, #261618 44%, #301a1e 66%, #140c0e 100%)",
     tracklist: [
-      { number: "A", title: "Bloodstain", duration: "4:44" },
-      { number: "B", title: "Sector Cut", duration: "5:12" },
+      { number: "1", title: "Bloodstain" },
+      { number: "2", title: "Cherry Vanilla" },
+      { number: "3", title: "Don't Be Scared" },
+      { number: "4", title: "Numerous Times" },
     ],
     streamingLinks: [
       {
@@ -281,7 +287,7 @@ const releasesData: Omit<Release, "slug" | "href">[] = [
   {
     id: "sc-001",
     catalog: "SCTRL001",
-    artist: "Unkey x Mono Code",
+    artist: "Unkey x Deft Design",
     title: "TECH ONE EP",
     releaseDate: "2024-12-06",
     image: "/images/releases/SCTRL001.webp",
@@ -294,10 +300,9 @@ const releasesData: Omit<Release, "slug" | "href">[] = [
     accentGradient:
       "linear-gradient(145deg, #121820 0%, #171d26 44%, #1c2430 66%, #101418 100%)",
     tracklist: [
-      { number: "A1", title: "Tech One", duration: "4:18" },
-      { number: "A2", title: "Grid Failure", duration: "4:28" },
-      { number: "B1", title: "Null Signal", duration: "3:54" },
-      { number: "B2", title: "Concrete Drift", duration: "5:06" },
+      { number: "1", title: "Tech One" },
+      { number: "2", title: "Drop It Down" },
+      { number: "3", title: "Dreamweaver" },
     ],
     streamingLinks: [
       {
@@ -339,6 +344,26 @@ export const releases: Release[] = releasesData.map((release) => {
 
 export function getReleaseBySlug(slug: string): Release | undefined {
   return releases.find((release) => release.slug === slug);
+}
+
+export function getReleaseById(id: string): Release | undefined {
+  return releases.find((release) => release.id === id);
+}
+
+export function getTrackPreviewUrl(
+  releaseId: string,
+  trackTitle: string,
+  previewUrl?: string
+): string {
+  if (previewUrl) return previewUrl;
+
+  const slug = trackTitle
+    .toLowerCase()
+    .replace(/\//g, "-")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+  return `/audio/previews/${releaseId}/${slug}.mp3`;
 }
 
 export const featuredRelease = releases.find((release) => release.featured) ?? releases[0];
