@@ -3,7 +3,7 @@ import { heroImage } from "@/lib/data";
 
 export function StoreHero() {
   return (
-    <header className="store-hero relative overflow-hidden border-b border-white/15">
+    <header className="store-hero relative overflow-hidden">
       <Image
         src={heroImage}
         alt=""

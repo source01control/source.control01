@@ -126,7 +126,7 @@ const samplePackProduct: StoreProduct = {
   id: "sample-pack-vol-1",
   category: "sample-packs",
   format: "digital",
-  catalog: "SC SP 001",
+  catalog: "SCTRL-SP001",
   title: "SAMPLE PACK VOL. 1",
   artist: "SOURCE CONTROL",
   price: 0,
@@ -144,26 +144,15 @@ export const storeProducts: StoreProduct[] = [
   samplePackProduct,
 ];
 
-export function getStoreCategoryCount(category: StoreCategory): number {
-  if (category === "all") return storeProducts.length;
-  return storeProducts.filter((product) => product.category === category).length;
-}
-
 export function filterStoreProducts({
   category,
-  formats,
-  maxPrice,
   sort,
 }: {
   category: StoreCategory;
-  formats: StoreFormat[];
-  maxPrice: number;
   sort: StoreSort;
 }): StoreProduct[] {
   let results = storeProducts.filter((product) => {
     if (category !== "all" && product.category !== category) return false;
-    if (formats.length > 0 && !formats.includes(product.format)) return false;
-    if (product.price > maxPrice) return false;
     return true;
   });
 
