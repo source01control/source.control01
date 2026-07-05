@@ -50,6 +50,13 @@ export function releaseHref(slug: string): string {
   return `/releases/${slug}`;
 }
 
+export function getReleaseBackgroundImage(catalog: string, fallback: string): string {
+  const catalogNumber = catalog.match(/(\d{3})$/)?.[1];
+  if (!catalogNumber) return fallback;
+
+  return `/images/just-background/${catalogNumber}_JB.webp`;
+}
+
 const placeholderStreamingLinks: StreamingLink[] = [
   { label: "Bandcamp", href: "#" },
   { label: "Beatport", href: "#" },

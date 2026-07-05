@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { FeaturedRelease } from "@/lib/homepage";
+import { getReleaseBackgroundImage } from "@/lib/releases";
 import { cn } from "@/lib/utils";
 
 type FeaturedReleaseCardProps = {
@@ -36,7 +37,7 @@ export function FeaturedReleaseCard({
       >
         <div className="absolute inset-0 overflow-hidden">
           <Image
-            src={release.image}
+            src={getReleaseBackgroundImage(release.catalog, release.image)}
             alt={release.alt}
             fill
             priority={featured}

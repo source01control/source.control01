@@ -4,7 +4,7 @@ import { StoreHero } from "@/components/store/StoreHero";
 
 export const metadata: Metadata = {
   title: "Store",
-  description: "SOURCE CONTROL store — vinyl, digital releases, and merchandise.",
+  description: "SOURCE CONTROL store — digital releases and merchandise.",
 };
 
 export default function StorePage() {

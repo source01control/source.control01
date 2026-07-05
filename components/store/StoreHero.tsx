@@ -18,7 +18,7 @@ export function StoreHero() {
           STORE
         </h1>
         <p className="store-hero__subtitle font-[family-name:var(--font-mono)] uppercase text-white/55">
-          Vinyl, digital &amp; merchandise from Source Control
+          Digital &amp; merchandise from Source Control
         </p>
       </div>
     </header>

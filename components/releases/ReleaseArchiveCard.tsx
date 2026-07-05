@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { FeaturedRelease } from "@/lib/homepage";
+import { getReleaseBackgroundImage } from "@/lib/releases";
 
 type ReleaseArchiveCardProps = {
   release: FeaturedRelease;
@@ -20,7 +21,7 @@ export function ReleaseArchiveCard({
       <Link href={release.href} className="release-archive-tile">
         <div className="release-archive-artwork">
           <Image
-            src={release.image}
+            src={getReleaseBackgroundImage(release.catalog, release.image)}
             alt={release.alt}
             fill
             priority={index < 3}

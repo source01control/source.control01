@@ -1,5 +1,9 @@
 import { merchandise } from "@/lib/data";
-import { releases, type Release } from "@/lib/releases";
+import {
+  getReleaseBackgroundImage,
+  releases,
+  type Release,
+} from "@/lib/releases";
 import { SAMPLE_PACK_ARTWORK, samplePackHref } from "@/lib/sample-pack";
 
 export type StoreCategory =
@@ -42,12 +46,49 @@ export const digitalDownloadFormats: StoreDownloadOption[] = [
   { format: "flac", label: "FLAC", priceLabel: "£7.00" },
 ];
 
+const releaseDownloadFormats: Record<string, StoreDownloadOption[]> = {
+  "sc-003": [
+    { format: "mp3", label: "MP3", priceLabel: "£2.50" },
+    { format: "wav", label: "WAV", priceLabel: "£2.50" },
+    { format: "flac", label: "FLAC", priceLabel: "£2.50" },
+  ],
+  "sc-001": [
+    { format: "mp3", label: "MP3", priceLabel: "£4.00" },
+    { format: "wav", label: "WAV", priceLabel: "£4.00" },
+    { format: "flac", label: "FLAC", priceLabel: "£4.00" },
+  ],
+  "sc-002": [
+    { format: "mp3", label: "MP3", priceLabel: "£4.50" },
+    { format: "wav", label: "WAV", priceLabel: "£4.50" },
+    { format: "flac", label: "FLAC", priceLabel: "£4.50" },
+  ],
+  "sc-004": [
+    { format: "mp3", label: "MP3", priceLabel: "£4.50" },
+    { format: "wav", label: "WAV", priceLabel: "£4.50" },
+    { format: "flac", label: "FLAC", priceLabel: "£4.50" },
+  ],
+  "sc-005": [
+    { format: "mp3", label: "MP3", priceLabel: "£4.00" },
+    { format: "wav", label: "WAV", priceLabel: "£4.00" },
+    { format: "flac", label: "FLAC", priceLabel: "£4.00" },
+  ],
+  "sc-006": [
+    { format: "mp3", label: "MP3", priceLabel: "£4.00" },
+    { format: "wav", label: "WAV", priceLabel: "£4.00" },
+    { format: "flac", label: "FLAC", priceLabel: "£4.00" },
+  ],
+};
+
+function getReleaseDownloadFormats(releaseId: string): StoreDownloadOption[] {
+  return releaseDownloadFormats[releaseId] ?? digitalDownloadFormats;
+}
+
 export const digitalTrackPrices: Record<
   DigitalDownloadFormat,
   { price: number; priceLabel: string }
 > = {
-  mp3: { price: 1.5, priceLabel: "£1.50" },
-  wav: { price: 1.75, priceLabel: "£1.75" },
+  mp3: { price: 2, priceLabel: "£2.00" },
+  wav: { price: 2, priceLabel: "£2.00" },
   flac: { price: 2, priceLabel: "£2.00" },
 };
 
@@ -77,14 +118,28 @@ export const storeCategories: {
 const vinylPrice = 18;
 const digitalPrice = 8;
 
-function getDigitalStoreImage(catalog: string, fallback: string): string {
-  const catalogNumber = catalog.match(/(\d{3})$/)?.[1];
-  if (!catalogNumber) return fallback;
+function getDigitalProductPrice(
+  releaseId: string,
+  downloadFormats: StoreDownloadOption[]
+): { price: number; priceLabel: string } {
+  if (!releaseDownloadFormats[releaseId]) {
+    return { price: digitalPrice, priceLabel: `£${digitalPrice.toFixed(2)}` };
+  }
 
-  return `/images/just-background/${catalogNumber}_JB.webp`;
+  const mp3 = downloadFormats.find((option) => option.format === "mp3");
+  if (!mp3) {
+    return { price: digitalPrice, priceLabel: `£${digitalPrice.toFixed(2)}` };
+  }
+
+  const price = Number.parseFloat(mp3.priceLabel.replace(/[^\d.]/g, "")) || digitalPrice;
+  return { price, priceLabel: mp3.priceLabel };
 }
 
-const releaseProducts: StoreProduct[] = releases.flatMap((release) => [
+const releaseProducts: StoreProduct[] = releases.flatMap((release) => {
+  const downloadFormats = getReleaseDownloadFormats(release.id);
+  const digitalPricing = getDigitalProductPrice(release.id, downloadFormats);
+
+  return [
   {
     id: `${release.id}-vinyl`,
     category: "vinyl" as const,
@@ -106,15 +161,16 @@ const releaseProducts: StoreProduct[] = releases.flatMap((release) => [
     catalog: release.catalog,
     title: release.title,
     artist: release.artist,
-    price: digitalPrice,
-    priceLabel: `£${digitalPrice.toFixed(2)}`,
-    image: getDigitalStoreImage(release.catalog, release.image),
+    price: digitalPricing.price,
+    priceLabel: digitalPricing.priceLabel,
+    image: getReleaseBackgroundImage(release.catalog, release.image),
     alt: release.alt,
     href: release.href,
     releaseDate: release.releaseDate,
-    downloadFormats: digitalDownloadFormats,
+    downloadFormats,
   },
-]);
+];
+});
 
 const merchProducts: StoreProduct[] = merchandise.map((item) => ({
   id: item.id,
