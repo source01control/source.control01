@@ -5,6 +5,7 @@ import { getTrackPreviewUrl, type Release } from "@/lib/releases";
 import type { DigitalDownloadFormat, StoreDownloadOption } from "@/lib/store";
 import { getTrackPriceLabel } from "@/lib/store";
 import { StoreFormatTabs } from "./StoreFormatTabs";
+import { StoreMatrixWaveform, type MatrixRainVariant } from "./StoreMatrixWaveform";
 import { cn } from "@/lib/utils";
 
 type StoreTrackDownloadProps = {
@@ -18,6 +19,11 @@ function trackCartKey(trackNumber: string, format: DigitalDownloadFormat): strin
   return `${trackNumber}-${format}`;
 }
 
+const matrixWaveformVariants: Partial<Record<string, MatrixRainVariant>> = {
+  "sc-005": "matrix",
+  "sc-001": "mono",
+};
+
 export function StoreTrackDownload({
   release,
   downloadFormats,
@@ -29,6 +35,9 @@ export function StoreTrackDownload({
   const [previewError, setPreviewError] = useState<string | null>(null);
   const [cartTracks, setCartTracks] = useState<Set<string>>(new Set());
   const [releaseInCart, setReleaseInCart] = useState(false);
+  const [activePreviewSrc, setActivePreviewSrc] = useState<string | null>(null);
+  const matrixRainVariant = matrixWaveformVariants[release.id];
+  const showMatrixWaveform = Boolean(matrixRainVariant);
 
   const selectedReleaseOption = downloadFormats.find(
     (option) => option.format === selectedFormat
@@ -39,9 +48,13 @@ export function StoreTrackDownload({
     const audio = audioRef.current;
     if (!audio) return;
 
-    const handleEnded = () => setPlayingTrack(null);
+    const handleEnded = () => {
+      setPlayingTrack(null);
+      setActivePreviewSrc(null);
+    };
     const handleError = () => {
       setPlayingTrack(null);
+      setActivePreviewSrc(null);
       setPreviewError("Preview clip not available yet.");
     };
 
@@ -62,6 +75,7 @@ export function StoreTrackDownload({
     if (playingTrack === trackNumber) {
       audio.pause();
       setPlayingTrack(null);
+      setActivePreviewSrc(null);
       return;
     }
 
@@ -71,9 +85,11 @@ export function StoreTrackDownload({
 
     try {
       await audio.play();
+      setActivePreviewSrc(src);
       setPlayingTrack(trackNumber);
     } catch {
       setPlayingTrack(null);
+      setActivePreviewSrc(null);
       setPreviewError("Preview clip not available yet.");
     }
   };
@@ -92,7 +108,13 @@ export function StoreTrackDownload({
   };
 
   return (
-    <section className="store-track-download" aria-label="Download tracks">
+    <section
+      className={cn(
+        "store-track-download",
+        showMatrixWaveform && "store-track-download--matrix"
+      )}
+      aria-label="Download tracks"
+    >
       <audio ref={audioRef} preload="none" className="sr-only" />
 
       <div className="store-track-download__header">
@@ -119,7 +141,13 @@ export function StoreTrackDownload({
           const isPlaying = playingTrack === track.number;
 
           return (
-            <li key={track.number} className="store-track-download__row">
+            <li
+              key={track.number}
+              className={cn(
+                "store-track-download__row",
+                showMatrixWaveform && isPlaying && "store-track-download__row--matrix"
+              )}
+            >
               <button
                 type="button"
                 className={cn(
@@ -150,6 +178,14 @@ export function StoreTrackDownload({
                   </p>
                 ) : null}
               </div>
+
+              {showMatrixWaveform && isPlaying && activePreviewSrc ? (
+                <StoreMatrixWaveform
+                  audioRef={audioRef}
+                  previewSrc={activePreviewSrc}
+                  rainVariant={matrixRainVariant}
+                />
+              ) : null}
 
               <button
                 type="button"
