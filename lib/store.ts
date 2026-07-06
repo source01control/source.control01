@@ -4,7 +4,11 @@ import {
   releases,
   type Release,
 } from "@/lib/releases";
-import { SAMPLE_PACK_ARTWORK, samplePackHref } from "@/lib/sample-pack";
+import {
+  SAMPLE_PACK_ARTWORK,
+  SAMPLE_PACK_STORE_ID,
+  samplePackHref,
+} from "@/lib/sample-pack";
 
 export type StoreCategory =
   | "all"
@@ -42,40 +46,40 @@ export type StoreProduct = {
 
 export const digitalDownloadFormats: StoreDownloadOption[] = [
   { format: "mp3", label: "MP3", priceLabel: "£6.00" },
-  { format: "wav", label: "WAV", priceLabel: "£8.00" },
   { format: "flac", label: "FLAC", priceLabel: "£7.00" },
+  { format: "wav", label: "WAV", priceLabel: "£8.00" },
 ];
 
 const releaseDownloadFormats: Record<string, StoreDownloadOption[]> = {
   "sc-003": [
     { format: "mp3", label: "MP3", priceLabel: "£2.50" },
-    { format: "wav", label: "WAV", priceLabel: "£2.50" },
-    { format: "flac", label: "FLAC", priceLabel: "£2.50" },
+    { format: "flac", label: "FLAC", priceLabel: "£3.00" },
+    { format: "wav", label: "WAV", priceLabel: "£3.50" },
   ],
   "sc-001": [
-    { format: "mp3", label: "MP3", priceLabel: "£4.00" },
-    { format: "wav", label: "WAV", priceLabel: "£4.00" },
+    { format: "mp3", label: "MP3", priceLabel: "£3.50" },
     { format: "flac", label: "FLAC", priceLabel: "£4.00" },
+    { format: "wav", label: "WAV", priceLabel: "£4.50" },
   ],
   "sc-002": [
     { format: "mp3", label: "MP3", priceLabel: "£4.50" },
-    { format: "wav", label: "WAV", priceLabel: "£4.50" },
-    { format: "flac", label: "FLAC", priceLabel: "£4.50" },
+    { format: "flac", label: "FLAC", priceLabel: "£5.00" },
+    { format: "wav", label: "WAV", priceLabel: "£5.50" },
   ],
   "sc-004": [
     { format: "mp3", label: "MP3", priceLabel: "£4.50" },
-    { format: "wav", label: "WAV", priceLabel: "£4.50" },
-    { format: "flac", label: "FLAC", priceLabel: "£4.50" },
+    { format: "flac", label: "FLAC", priceLabel: "£5.00" },
+    { format: "wav", label: "WAV", priceLabel: "£5.50" },
   ],
   "sc-005": [
-    { format: "mp3", label: "MP3", priceLabel: "£4.00" },
-    { format: "wav", label: "WAV", priceLabel: "£4.00" },
+    { format: "mp3", label: "MP3", priceLabel: "£3.50" },
     { format: "flac", label: "FLAC", priceLabel: "£4.00" },
+    { format: "wav", label: "WAV", priceLabel: "£4.50" },
   ],
   "sc-006": [
-    { format: "mp3", label: "MP3", priceLabel: "£4.00" },
-    { format: "wav", label: "WAV", priceLabel: "£4.00" },
-    { format: "flac", label: "FLAC", priceLabel: "£4.00" },
+    { format: "mp3", label: "MP3", priceLabel: "£4.50" },
+    { format: "flac", label: "FLAC", priceLabel: "£5.00" },
+    { format: "wav", label: "WAV", priceLabel: "£5.50" },
   ],
 };
 
@@ -87,9 +91,9 @@ export const digitalTrackPrices: Record<
   DigitalDownloadFormat,
   { price: number; priceLabel: string }
 > = {
-  mp3: { price: 2, priceLabel: "£2.00" },
-  wav: { price: 2, priceLabel: "£2.00" },
+  mp3: { price: 1.75, priceLabel: "£1.75" },
   flac: { price: 2, priceLabel: "£2.00" },
+  wav: { price: 2.25, priceLabel: "£2.25" },
 };
 
 export function getTrackPriceLabel(format: DigitalDownloadFormat): string {
@@ -200,7 +204,7 @@ const bundleProduct: StoreProduct = {
 };
 
 const samplePackProduct: StoreProduct = {
-  id: "sample-pack-vol-1",
+  id: SAMPLE_PACK_STORE_ID,
   category: "sample-packs",
   format: "digital",
   catalog: "SCTRL-SP001",

@@ -215,8 +215,7 @@ export function StoreMatrixWaveform({
           ? Math.min(1, Math.max(0, audio.currentTime / duration))
           : 0;
 
-      ctx.fillStyle = "rgba(0, 0, 0, 0.18)";
-      ctx.fillRect(0, 0, width, height);
+      ctx.clearRect(0, 0, width, height);
 
       const fontSize = 9;
       ctx.font = `${fontSize}px ui-monospace, SFMono-Regular, Menlo, monospace`;

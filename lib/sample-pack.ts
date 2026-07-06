@@ -7,4 +7,6 @@ export const SAMPLE_PACK_ARTWORK = "/images/sample pack/sample pack vol1.webp";
 export const SAMPLE_PACK_COPY =
   "Enter your email to download Sample Pack Vol. 1 instantly";
 
-export const samplePackHref = "/sample-pack";
+export const SAMPLE_PACK_STORE_ID = "sample-pack-vol-1";
+
+export const samplePackHref = `/store/${SAMPLE_PACK_STORE_ID}`;
