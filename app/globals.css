@@ -2227,3 +2227,212 @@ body.release-page-with-video .site-header-bar {
   border: 0;
 }
 
+/* —— About hero glitch —— */
+.about-hero-visual {
+  aspect-ratio: 3 / 4;
+  background: #050505;
+}
+
+@media (min-width: 768px) {
+  .about-hero-visual {
+    width: min(38vw, 460px);
+  }
+}
+
+.about-hero-glitch {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.about-hero-glitch__image {
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(1) contrast(1.05);
+  animation: about-hero-image 5.7s steps(1, end) infinite;
+}
+
+.about-hero-glitch__slice {
+  position: absolute;
+  left: -6%;
+  width: 112%;
+  height: 11%;
+  pointer-events: none;
+  background: inherit;
+  background-image: url("/images/about/hero.webp");
+  background-size: cover;
+  background-position: center top;
+  filter: grayscale(1) contrast(1.2) brightness(1.05);
+  opacity: 0;
+  mix-blend-mode: lighten;
+  z-index: 3;
+}
+
+.about-hero-glitch__slice--a {
+  top: 22%;
+  animation: about-hero-slice 4.8s steps(1, end) infinite;
+}
+
+.about-hero-glitch__slice--b {
+  top: 58%;
+  height: 7%;
+  animation: about-hero-slice 4.8s steps(1, end) infinite 1.6s;
+}
+
+.about-hero-glitch__rgb {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 50, 50, 0.2),
+      transparent 35%,
+      transparent 65%,
+      rgba(60, 170, 255, 0.16)
+    );
+  mix-blend-mode: screen;
+  animation: about-hero-rgb 4.3s steps(1, end) infinite;
+}
+
+.about-hero-glitch__scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0.14;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    rgba(0, 0, 0, 0.4) 2px,
+    rgba(0, 0, 0, 0.4) 3px
+  );
+  mix-blend-mode: multiply;
+}
+
+.about-hero-glitch__noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: about-hero-noise 0.4s steps(2) infinite;
+}
+
+@keyframes about-hero-image {
+  0%,
+  88%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    filter: grayscale(1) contrast(1.05);
+    clip-path: inset(0 0 0 0);
+  }
+  89% {
+    transform: translate3d(-1.5%, 0, 0);
+    filter: grayscale(1) contrast(1.35) brightness(1.08);
+    clip-path: inset(8% 0 55% 0);
+  }
+  91% {
+    transform: translate3d(1.8%, -0.4%, 0);
+    filter: grayscale(1) contrast(1.2) brightness(0.9);
+    clip-path: inset(40% 0 12% 0);
+  }
+  93% {
+    transform: translate3d(0, 0, 0);
+    filter: grayscale(1) contrast(1.05);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes about-hero-slice {
+  0%,
+  86%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) skewX(0deg);
+  }
+  87% {
+    opacity: 0.85;
+    transform: translate3d(-4%, 0, 0) skewX(-6deg);
+  }
+  89% {
+    opacity: 0.7;
+    transform: translate3d(5%, 0, 0) skewX(5deg);
+  }
+  91% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) skewX(0deg);
+  }
+}
+
+@keyframes about-hero-rgb {
+  0%,
+  84%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  85% {
+    opacity: 0.65;
+    transform: translate3d(-2%, 0, 0);
+  }
+  87% {
+    opacity: 0.4;
+    transform: translate3d(2.5%, 0, 0);
+  }
+  89% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes about-hero-noise {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-1%, 1%, 0);
+  }
+  100% {
+    transform: translate3d(1%, -1%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-hero-glitch__image,
+  .about-hero-glitch__slice,
+  .about-hero-glitch__rgb,
+  .about-hero-glitch__noise {
+    animation: none !important;
+  }
+
+  .about-hero-glitch__slice,
+  .about-hero-glitch__rgb {
+    opacity: 0 !important;
+  }
+
+  .about-hero-glitch__noise {
+    opacity: 0.04;
+  }
+}
+
+.about-body {
+  min-height: 8rem;
+}
+
+.about-body__text {
+  max-width: 40rem;
+  margin-inline: auto;
+  font-family: "Times New Roman", Times, serif;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  font-weight: 300;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.55);
+  white-space: pre-line;
+}

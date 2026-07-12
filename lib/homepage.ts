@@ -1,5 +1,5 @@
 export const homepageNav = [
-  { label: "About", href: "#about" },
+  { label: "About", href: "/about" },
   { label: "Artists", href: "/artists" },
   { label: "Releases", href: "/releases" },
   { label: "Events", href: "/events" },
