@@ -10,6 +10,7 @@ type ArtistArchiveCardProps = {
 
 function formatArtistName(name: string): string {
   if (name === "UNKEY") return "Unkey";
+  if (name === "NO RECALL") return "No Recall";
   if (name === "MONO CODE") return "Mono Code";
   return name;
 }

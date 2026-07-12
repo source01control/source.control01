@@ -13,10 +13,16 @@ type ArtistDetailProps = {
 
 const ARTIST_HERO_BACKGROUND = "/images/source-control-assets/01.webp";
 
-const ARTISTS_WITH_HERO_BACKGROUND = new Set(["unkey", "mono-code", "0079"]);
+const ARTISTS_WITH_HERO_BACKGROUND = new Set([
+  "unkey",
+  "no-recall",
+  "mono-code",
+  "0079",
+]);
 
 function formatArtistName(name: string): string {
   if (name === "UNKEY") return "Unkey";
+  if (name === "NO RECALL") return "No Recall";
   if (name === "MONO CODE") return "Mono Code";
   return name;
 }

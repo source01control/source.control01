@@ -3,7 +3,7 @@ import { ArtistArchive } from "@/components/artists/ArtistArchive";
 
 export const metadata: Metadata = {
   title: "Artists",
-  description: "SOURCE CONTROL roster — Unkey, Mono Code, 0079.",
+  description: "SOURCE CONTROL roster — Unkey, Mono Code, 0079, No Recall.",
 };
 
 export default function ArtistsPage() {

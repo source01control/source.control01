@@ -15,6 +15,7 @@ function artistMatchesRelease(artist: Artist, release: Release): boolean {
   const releaseArtist = release.artist.toLowerCase();
 
   if (artist.slug === "unkey") return releaseArtist.includes("unkey");
+  if (artist.slug === "no-recall") return releaseArtist.includes("no recall");
   if (artist.slug === "mono-code") return releaseArtist.includes("mono code");
   if (artist.slug === "0079") return releaseArtist.includes("0079");
 
