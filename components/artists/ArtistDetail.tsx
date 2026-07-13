@@ -22,7 +22,13 @@ const ARTISTS_WITH_HERO_BACKGROUND = new Set([
 
 function formatArtistName(name: string): string {
   if (name === "UNKEY") return "Unkey";
-  if (name === "NO RECALL") return "No Recall";
+  if (
+    name === "NO RECALL" ||
+    name === "NoRecall" ||
+    name === "noRecall"
+  ) {
+    return "noRecall";
+  }
   if (name === "MONO CODE") return "Mono Code";
   return name;
 }
@@ -79,7 +85,12 @@ export function ArtistDetail({ artist }: ArtistDetailProps) {
 
                 <hr className="release-detail-divider" />
 
-                <h1 className="release-detail-title font-[family-name:var(--font-display)] tracking-[0.04em] uppercase text-white">
+                <h1
+                  className={cn(
+                    "release-detail-title font-[family-name:var(--font-display)] tracking-[0.04em] text-white",
+                    artist.slug !== "no-recall" && "uppercase"
+                  )}
+                >
                   {formatArtistName(artist.name)}
                 </h1>
               </header>

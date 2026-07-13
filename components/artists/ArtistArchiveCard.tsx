@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Artist } from "@/lib/data";
 import { artistHref } from "@/lib/artists";
+import { cn } from "@/lib/utils";
 
 type ArtistArchiveCardProps = {
   artist: Artist;
@@ -10,12 +11,20 @@ type ArtistArchiveCardProps = {
 
 function formatArtistName(name: string): string {
   if (name === "UNKEY") return "Unkey";
-  if (name === "NO RECALL") return "No Recall";
+  if (
+    name === "NO RECALL" ||
+    name === "NoRecall" ||
+    name === "noRecall"
+  ) {
+    return "noRecall";
+  }
   if (name === "MONO CODE") return "Mono Code";
   return name;
 }
 
 export function ArtistArchiveCard({ artist, index }: ArtistArchiveCardProps) {
+  const preserveCase = artist.slug === "no-recall";
+
   return (
     <article className="release-archive-card release-card group">
       <Link href={artistHref(artist.slug)} className="release-archive-tile">
@@ -33,7 +42,12 @@ export function ArtistArchiveCard({ artist, index }: ArtistArchiveCardProps) {
         </div>
 
         <div className="release-archive-meta">
-          <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.5rem,2.4vw,2rem)] leading-[0.9] tracking-[0.04em] uppercase text-white">
+          <h2
+            className={cn(
+              "font-[family-name:var(--font-display)] text-[clamp(1.5rem,2.4vw,2rem)] leading-[0.9] tracking-[0.04em] text-white",
+              !preserveCase && "uppercase"
+            )}
+          >
             {formatArtistName(artist.name)}
           </h2>
         </div>

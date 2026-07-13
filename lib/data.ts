@@ -69,15 +69,15 @@ export const artists: Artist[] = [
   },
   {
     id: "no-recall",
-    name: "NO RECALL",
+    name: "noRecall",
     slug: "no-recall",
     role: "PACIFIC SIGNAL",
-    bio: "",
+    bio: "For Seattle based producer No Recall, music is less about composition than transformation. Sounds are rarely left untouched; they are repeatedly recorded, resampled, reshaped and dismantled until they become something entirely their own. The studio becomes a workshop where distortion, texture and imperfection are embraced rather than corrected, reflecting a creative process driven by curiosity as much as control.\n\nGrowing up surrounded by the sounds of '80s club music, '90s industrial and early rave culture, electronic music was always present, but production arrived later. Early experiments in Ableton gradually evolved into a deeper fascination with sound itself, eventually leading to the co founding of Ommaya Records, a platform built around exploration, experimentation and the belief that music should never be constrained by expectation.\n\nThat philosophy continues to define No Recall's work today.\n\nRather than searching for familiarity, inspiration comes from discovering music that feels genuinely new. Influences range from the spacious minimalism of Burial and the immersive worlds of Deep Medi to the hypnotic precision of DVS1 and Daniel Avery, alongside contemporary underground labels emerging from France that continue to challenge established ideas of bass music. Outside the studio, inspiration often arrives in front of a sound system, where the physical experience of low frequencies becomes a reminder of why the music exists in the first place.\n\n\"I need things to remain noisy and generally fucked up.\"\n\nHis productions move freely between dark, grungy bass music, experimental club sounds and abstract electronics, resisting easy categorisation in favour of continual discovery. Rather than refining a single formula, every new project becomes an opportunity to test different ideas, dismantle old habits and uncover unfamiliar territory.\n\n\"I want people to react, 'What the fuck am I listening to?', whether that's good or bad.\"\n\nFor No Recall, success is measured less by achievements than by the relationships built through music itself. Every release becomes a conversation with a new label, a new city and a new community, strengthening the underground network that continues to inspire his own development as an artist. As those connections expand, so too does the music, each collaboration, each influence and each new encounter becoming part of an ongoing cycle of exploration.\n\nWith a constant stream of new material in progress and an ambition to create at least one new piece of music every week, No Recall remains committed to the process rather than the destination.\n\nBecause the most exciting discoveries are usually the ones you weren't looking for.",
     origin: "SEATTLE",
     catalog: "SC_004",
     image: {
       url: "/images/artists/no-recall.webp",
-      alt: "No Recall",
+      alt: "noRecall",
     },
   },
 ];
