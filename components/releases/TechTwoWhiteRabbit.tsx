@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { TechTwoSecretRabbit } from "./TechTwoSecretRabbit";
 import { cn } from "@/lib/utils";
 
-const MESSAGE = "follow the white rabbit";
+const MESSAGE = "follow the white rabbit.";
 const DELAY_BEFORE_BLANK_MS = 3000;
 const TYPE_INTERVAL_MS = 95;
 const RAIN_HOLD_MS = 2400;
