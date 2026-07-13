@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { ReleaseDetail } from "@/components/releases/ReleaseDetail";
 import { TechTwoWhiteRabbit } from "@/components/releases/TechTwoWhiteRabbit";
+import { WhiteRabbitPageEnter } from "@/components/releases/WhiteRabbitPageEnter";
 import { getReleaseBySlug, releases } from "@/lib/releases";
 import {
   WHITE_RABBIT_SLUG,
@@ -58,6 +60,14 @@ export default async function ReleasePage({ params }: Props) {
     <div className="w-full">
       {release.id === "sc-005" ? (
         <TechTwoWhiteRabbit>{detail}</TechTwoWhiteRabbit>
+      ) : release.id === "sc-secret-white-rabbit" ? (
+        <Suspense
+          fallback={
+            <div className="white-rabbit-page-enter white-rabbit-page-enter--intro min-h-screen bg-black" />
+          }
+        >
+          <WhiteRabbitPageEnter>{detail}</WhiteRabbitPageEnter>
+        </Suspense>
       ) : (
         detail
       )}

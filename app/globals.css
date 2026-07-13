@@ -2470,7 +2470,7 @@ body.release-page-with-video .site-header-bar {
 .tech-two-white-rabbit__page--content-in .release-detail-foreground {
   opacity: 1;
   pointer-events: auto;
-  transition: opacity 1.4s ease;
+  transition: opacity 0.4s ease;
 }
 
 .tech-two-white-rabbit__overlay {
@@ -2483,7 +2483,7 @@ body.release-page-with-video .site-header-bar {
   background: #000;
   opacity: 1;
   transition:
-    opacity 1.4s ease,
+    opacity 0.4s ease,
     background-color 3s ease;
 }
 
@@ -2535,6 +2535,10 @@ body.release-page-with-video .site-header-bar {
   position: fixed;
   z-index: 280;
   width: clamp(2.45rem, 5.6vw, 3.85rem);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
   transform: translate(-50%, -50%) scale(0.35);
   opacity: 0;
   pointer-events: none;
@@ -2640,6 +2644,111 @@ body.release-page-with-video .site-header-bar {
   .tech-two-secret-rabbit--visible {
     opacity: 0.38;
     transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* —— Matrix SEARCHING dive (rabbit → secret page) —— */
+.matrix-search-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  overflow: hidden;
+  background: #000;
+  pointer-events: none;
+}
+
+.matrix-search-transition--preload {
+  visibility: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.matrix-search-transition__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+  opacity: 1;
+  transition: opacity 1.2s ease;
+}
+
+.matrix-search-transition--fading .matrix-search-transition__video {
+  opacity: 0;
+}
+
+.white-rabbit-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 600;
+  background: #000;
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 0.7s ease;
+}
+
+.white-rabbit-veil--out {
+  opacity: 0;
+}
+
+.white-rabbit-page-enter {
+  position: relative;
+  width: 100%;
+}
+
+.white-rabbit-page-enter--boot,
+.white-rabbit-page-enter--intro {
+  min-height: 100vh;
+  background: #000;
+}
+
+.white-rabbit-page-enter__boot {
+  min-height: 100vh;
+  background: #000;
+}
+
+/* Keep layout; only Source Unknown is visible during intro */
+.white-rabbit-page-enter--intro .release-detail-artwork,
+.white-rabbit-page-enter--intro .release-detail-divider,
+.white-rabbit-page-enter--intro .release-detail-title,
+.white-rabbit-page-enter--intro .release-detail-bottom,
+.white-rabbit-page-enter--intro .release-detail-bg-video {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+.white-rabbit-page-enter--revealed .release-detail-artwork,
+.white-rabbit-page-enter--revealed .release-detail-divider,
+.white-rabbit-page-enter--revealed .release-detail-title,
+.white-rabbit-page-enter--revealed .release-detail-bottom,
+.white-rabbit-page-enter--revealed .release-detail-bg-video {
+  opacity: 1;
+  transition: opacity 1.2s ease;
+}
+
+.white-rabbit-page-enter--revealed .release-detail-bg-video__media {
+  transition: opacity 1.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .matrix-search-transition {
+    display: none;
+  }
+
+  .white-rabbit-veil,
+  .white-rabbit-page-enter--intro .release-detail-artwork,
+  .white-rabbit-page-enter--intro .release-detail-divider,
+  .white-rabbit-page-enter--intro .release-detail-title,
+  .white-rabbit-page-enter--intro .release-detail-bottom,
+  .white-rabbit-page-enter--intro .release-detail-bg-video,
+  .white-rabbit-page-enter--revealed .release-detail-artwork,
+  .white-rabbit-page-enter--revealed .release-detail-divider,
+  .white-rabbit-page-enter--revealed .release-detail-title,
+  .white-rabbit-page-enter--revealed .release-detail-bottom,
+  .white-rabbit-page-enter--revealed .release-detail-bg-video {
+    transition: none !important;
+    opacity: 1 !important;
   }
 }
 

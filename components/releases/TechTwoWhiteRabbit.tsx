@@ -7,9 +7,9 @@ import { cn } from "@/lib/utils";
 const MESSAGE = "follow the white rabbit.";
 const DELAY_BEFORE_BLANK_MS = 3000;
 const TYPE_INTERVAL_MS = 95;
-const HOLD_AFTER_MESSAGE_MS = 3000;
+const HOLD_AFTER_MESSAGE_MS = 2000;
 const RAIN_HOLD_MS = 4000;
-const FADE_MS = 1400;
+const FADE_MS = 400;
 
 type Phase = "waiting" | "blank" | "typing" | "rain" | "revealing" | "done";
 

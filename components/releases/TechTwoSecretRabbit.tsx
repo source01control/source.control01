@@ -1,9 +1,11 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { WHITE_RABBIT_HREF } from "@/lib/secret-release";
+import { WHITE_RABBIT_ENTER_QUERY } from "@/lib/white-rabbit-transition";
 import { cn } from "@/lib/utils";
+import { MatrixSearchingTransition } from "./MatrixSearchingTransition";
 
 const RABBIT_SRC = "/images/releases/white-rabbit-cutout.png";
 
@@ -19,12 +21,18 @@ type TechTwoSecretRabbitProps = {
 };
 
 export function TechTwoSecretRabbit({ active }: TechTwoSecretRabbitProps) {
+  const router = useRouter();
   const [spotIndex, setSpotIndex] = useState(0);
   const [visible, setVisible] = useState(false);
   const [flashing, setFlashing] = useState(false);
+  const [transitioning, setTransitioning] = useState(false);
 
   useEffect(() => {
-    if (!active) return;
+    router.prefetch(WHITE_RABBIT_HREF);
+  }, [router]);
+
+  useEffect(() => {
+    if (!active || transitioning) return;
 
     let cancelled = false;
     const timers: number[] = [];
@@ -67,32 +75,48 @@ export function TechTwoSecretRabbit({ active }: TechTwoSecretRabbitProps) {
       cancelled = true;
       timers.forEach((id) => window.clearTimeout(id));
     };
-  }, [active]);
+  }, [active, transitioning]);
 
   if (!active) return null;
 
   const spot = SPOTS[spotIndex] ?? SPOTS[0];
 
   return (
-    <Link
-      href={WHITE_RABBIT_HREF}
-      className={cn(
-        "tech-two-secret-rabbit",
-        visible && "tech-two-secret-rabbit--visible",
-        flashing && "tech-two-secret-rabbit--flash"
-      )}
-      style={{ top: spot.top, left: spot.left }}
-      aria-label="White rabbit"
-    >
-      {/* White strokes on transparent PNG */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={RABBIT_SRC}
-        alt=""
-        width={120}
-        height={146}
-        className="tech-two-secret-rabbit__image"
+    <>
+      <button
+        type="button"
+        className={cn(
+          "tech-two-secret-rabbit",
+          visible && !transitioning && "tech-two-secret-rabbit--visible",
+          flashing && !transitioning && "tech-two-secret-rabbit--flash"
+        )}
+        style={{ top: spot.top, left: spot.left }}
+        aria-label="White rabbit"
+        disabled={transitioning}
+        onClick={() => {
+          if (transitioning) return;
+          setTransitioning(true);
+          setVisible(false);
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={RABBIT_SRC}
+          alt=""
+          width={120}
+          height={146}
+          className="tech-two-secret-rabbit__image"
+        />
+      </button>
+
+      <MatrixSearchingTransition
+        active={transitioning}
+        onComplete={() => {
+          router.push(
+            `${WHITE_RABBIT_HREF}?${WHITE_RABBIT_ENTER_QUERY}=1`
+          );
+        }}
       />
-    </Link>
+    </>
   );
 }

@@ -6,7 +6,7 @@ import { getReleaseDigitalStorePath } from "@/lib/store";
 import type { Release } from "@/lib/releases";
 import { cn } from "@/lib/utils";
 import { ReleaseBackgroundVideo } from "./ReleaseBackgroundVideo";
-import { SourceUnknownTypewriter } from "./SourceUnknownTypewriter";
+import { WhiteRabbitArtist } from "./WhiteRabbitArtist";
 
 type ReleaseDetailProps = {
   release: Release;
@@ -179,7 +179,7 @@ export function ReleaseDetail({ release }: ReleaseDetailProps) {
           >
             <header className="release-detail-header">
               {release.id === "sc-secret-white-rabbit" ? (
-                <SourceUnknownTypewriter />
+                <WhiteRabbitArtist />
               ) : (
                 <p className="release-detail-artist font-[family-name:var(--font-mono)] uppercase text-white">
                   {formatReleaseArtist(release.artist)}
