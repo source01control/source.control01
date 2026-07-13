@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ReleaseDetail } from "@/components/releases/ReleaseDetail";
+import { TechTwoWhiteRabbit } from "@/components/releases/TechTwoWhiteRabbit";
 import { getReleaseBySlug, releases } from "@/lib/releases";
 
 type Props = {
@@ -37,9 +38,15 @@ export default async function ReleasePage({ params }: Props) {
 
   if (!release) notFound();
 
+  const detail = <ReleaseDetail release={release} />;
+
   return (
     <div className="w-full">
-      <ReleaseDetail release={release} />
+      {release.id === "sc-005" ? (
+        <TechTwoWhiteRabbit>{detail}</TechTwoWhiteRabbit>
+      ) : (
+        detail
+      )}
     </div>
   );
 }

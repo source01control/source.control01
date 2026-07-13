@@ -49,10 +49,6 @@ export function AboutHero() {
                 <span className="block">SOURCE</span>
                 <span className="block">CONTROL</span>
               </motion.h1>
-
-              <motion.p className="hero-tagline" variants={itemVariants}>
-                continuous evolution / Underground Electronic Music / UK
-              </motion.p>
             </div>
 
             <motion.div

@@ -2436,3 +2436,157 @@ body.release-page-with-video .site-header-bar {
   color: rgba(255, 255, 255, 0.55);
   white-space: pre-line;
 }
+
+/* —— Tech Two white rabbit intro —— */
+@font-face {
+  font-family: "White Rabbit";
+  src: url("/fonts/WHITRABT.TTF") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.tech-two-white-rabbit {
+  position: relative;
+  width: 100%;
+}
+
+.tech-two-white-rabbit__page {
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+
+.tech-two-white-rabbit__page--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tech-two-white-rabbit__page--content-hidden .release-detail-foreground {
+  opacity: 0;
+  pointer-events: none;
+  transition: none;
+}
+
+.tech-two-white-rabbit__page--content-in .release-detail-foreground {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 1.4s ease;
+}
+
+.tech-two-white-rabbit__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  opacity: 1;
+  transition:
+    opacity 1.4s ease,
+    background-color 0.6s ease;
+}
+
+.tech-two-white-rabbit__overlay--clear {
+  background: transparent;
+}
+
+.tech-two-white-rabbit__overlay--out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tech-two-white-rabbit__message {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  max-width: min(92vw, 46rem);
+  padding: 0 1rem;
+  text-align: center;
+  font-family: "White Rabbit", ui-monospace, monospace;
+  font-size: clamp(1.15rem, 4.2vw, 2.35rem);
+  line-height: 1.35;
+  letter-spacing: 0.12em;
+  color: #e8ffe8;
+  text-shadow: 0 0 18px rgba(93, 255, 58, 0.35);
+}
+
+.tech-two-white-rabbit__cursor {
+  display: inline-block;
+  margin-left: 0.12em;
+  color: #7dff5a;
+  opacity: 1;
+  transition: opacity 0.05s linear;
+}
+
+.tech-two-white-rabbit__cursor--off {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-two-white-rabbit__page,
+  .tech-two-white-rabbit__overlay,
+  .tech-two-white-rabbit__page--content-in .release-detail-foreground {
+    transition: none;
+  }
+}
+
+.tech-two-secret-rabbit {
+  position: fixed;
+  z-index: 280;
+  width: clamp(3.5rem, 8vw, 5.5rem);
+  transform: translate(-50%, -50%) scale(0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.18s ease,
+    transform 0.22s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+
+.tech-two-secret-rabbit--visible {
+  opacity: 0.38;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+}
+
+.tech-two-secret-rabbit--flash {
+  animation: tech-two-secret-rabbit-flash 0.28s steps(2, end) 2;
+}
+
+.tech-two-secret-rabbit__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: invert(1);
+  mix-blend-mode: screen;
+}
+
+@keyframes tech-two-secret-rabbit-flash {
+  0%,
+  100% {
+    opacity: 0.38;
+    filter: brightness(1);
+  }
+  40% {
+    opacity: 0.08;
+    filter: brightness(2.4);
+  }
+  70% {
+    opacity: 0.48;
+    filter: brightness(1.6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-two-secret-rabbit,
+  .tech-two-secret-rabbit--flash {
+    animation: none !important;
+    transition: none;
+  }
+
+  .tech-two-secret-rabbit--visible {
+    opacity: 0.38;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
