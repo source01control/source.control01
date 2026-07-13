@@ -1,14 +1,11 @@
 "use client";
 
-import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { WHITE_RABBIT_HREF } from "@/lib/secret-release";
 import { cn } from "@/lib/utils";
 
-/** Replace with the real Dropbox URL for the secret track. */
-export const TECH_TWO_SECRET_TRACK_URL =
-  "https://www.dropbox.com/home";
-
-const RABBIT_SRC = "/images/releases/white-rabbit.webp";
+const RABBIT_SRC = "/images/releases/white-rabbit-cutout.png";
 
 const SPOTS = [
   { top: "88%", left: "8%" }, // bottom left (start)
@@ -77,26 +74,25 @@ export function TechTwoSecretRabbit({ active }: TechTwoSecretRabbitProps) {
   const spot = SPOTS[spotIndex] ?? SPOTS[0];
 
   return (
-    <a
-      href={TECH_TWO_SECRET_TRACK_URL}
-      target="_blank"
-      rel="noopener noreferrer"
+    <Link
+      href={WHITE_RABBIT_HREF}
       className={cn(
         "tech-two-secret-rabbit",
         visible && "tech-two-secret-rabbit--visible",
         flashing && "tech-two-secret-rabbit--flash"
       )}
       style={{ top: spot.top, left: spot.left }}
-      aria-label="Secret track"
+      aria-label="White rabbit"
     >
-      <Image
+      {/* White strokes on transparent PNG */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src={RABBIT_SRC}
         alt=""
         width={120}
         height={146}
         className="tech-two-secret-rabbit__image"
-        priority
       />
-    </a>
+    </Link>
   );
 }

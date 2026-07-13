@@ -6,6 +6,7 @@ import { getReleaseDigitalStorePath } from "@/lib/store";
 import type { Release } from "@/lib/releases";
 import { cn } from "@/lib/utils";
 import { ReleaseBackgroundVideo } from "./ReleaseBackgroundVideo";
+import { SourceUnknownTypewriter } from "./SourceUnknownTypewriter";
 
 type ReleaseDetailProps = {
   release: Release;
@@ -90,7 +91,8 @@ export function ReleaseDetail({ release }: ReleaseDetailProps) {
     <article
       className={cn(
         "release-detail release-detail--release-page relative w-full bg-black release-detail--compact-platforms",
-        release.backgroundVideo && "release-detail--with-video"
+        release.backgroundVideo && "release-detail--with-video",
+        release.id === "sc-secret-white-rabbit" && "release-detail--white-rabbit"
       )}
     >
       {release.backgroundVideo ? (
@@ -111,7 +113,14 @@ export function ReleaseDetail({ release }: ReleaseDetailProps) {
         aria-label="Release overview"
       >
         <div className="release-detail-grid">
-          <div className="release-detail-artwork relative overflow-hidden bg-black/20">
+          <div
+            className={cn(
+              "release-detail-artwork relative overflow-hidden",
+              release.id === "sc-secret-white-rabbit"
+                ? "bg-transparent"
+                : "bg-black/20"
+            )}
+          >
             {release.artworkVideo ? (
               <video
                 src={encodeURI(release.artworkVideo)}
@@ -122,6 +131,23 @@ export function ReleaseDetail({ release }: ReleaseDetailProps) {
                 playsInline
                 className="absolute inset-0 h-full w-full object-cover"
                 aria-label={release.alt}
+              />
+            ) : release.id === "sc-secret-white-rabbit" ? (
+              <div
+                className="absolute inset-[8%] tech-two-secret-artwork"
+                role="img"
+                aria-label={release.alt}
+                style={{
+                  backgroundColor: "#fff",
+                  WebkitMaskImage: `url(${encodeURI(release.detailImage ?? release.image)})`,
+                  maskImage: `url(${encodeURI(release.detailImage ?? release.image)})`,
+                  WebkitMaskSize: "contain",
+                  maskSize: "contain",
+                  WebkitMaskRepeat: "no-repeat",
+                  maskRepeat: "no-repeat",
+                  WebkitMaskPosition: "center",
+                  maskPosition: "center",
+                }}
               />
             ) : (
               <Image
@@ -152,13 +178,24 @@ export function ReleaseDetail({ release }: ReleaseDetailProps) {
             }
           >
             <header className="release-detail-header">
-              <p className="release-detail-artist font-[family-name:var(--font-mono)] uppercase text-white">
-                {formatReleaseArtist(release.artist)}
-              </p>
+              {release.id === "sc-secret-white-rabbit" ? (
+                <SourceUnknownTypewriter />
+              ) : (
+                <p className="release-detail-artist font-[family-name:var(--font-mono)] uppercase text-white">
+                  {formatReleaseArtist(release.artist)}
+                </p>
+              )}
 
               <hr className="release-detail-divider" />
 
-              <h1 className="release-detail-title font-[family-name:var(--font-display)] tracking-[0.04em] uppercase text-white">
+              <h1
+                className={cn(
+                  "release-detail-title tracking-[0.04em] uppercase text-white",
+                  release.id === "sc-secret-white-rabbit"
+                    ? "white-rabbit-title"
+                    : "font-[family-name:var(--font-display)]"
+                )}
+              >
                 {release.title}
               </h1>
             </header>

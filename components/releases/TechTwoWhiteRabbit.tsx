@@ -7,7 +7,8 @@ import { cn } from "@/lib/utils";
 const MESSAGE = "follow the white rabbit.";
 const DELAY_BEFORE_BLANK_MS = 3000;
 const TYPE_INTERVAL_MS = 95;
-const RAIN_HOLD_MS = 2400;
+const HOLD_AFTER_MESSAGE_MS = 3000;
+const RAIN_HOLD_MS = 4000;
 const FADE_MS = 1400;
 
 type Phase = "waiting" | "blank" | "typing" | "rain" | "revealing" | "done";
@@ -54,7 +55,10 @@ export function TechTwoWhiteRabbit({ children }: TechTwoWhiteRabbitProps) {
     if (phase !== "typing") return;
 
     if (typed.length >= MESSAGE.length) {
-      const rainTimer = window.setTimeout(() => setPhase("rain"), 450);
+      const rainTimer = window.setTimeout(
+        () => setPhase("rain"),
+        HOLD_AFTER_MESSAGE_MS
+      );
       return () => window.clearTimeout(rainTimer);
     }
 

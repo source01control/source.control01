@@ -3,18 +3,28 @@ import { notFound } from "next/navigation";
 import { ReleaseDetail } from "@/components/releases/ReleaseDetail";
 import { TechTwoWhiteRabbit } from "@/components/releases/TechTwoWhiteRabbit";
 import { getReleaseBySlug, releases } from "@/lib/releases";
+import {
+  WHITE_RABBIT_SLUG,
+  whiteRabbitRelease,
+} from "@/lib/secret-release";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
-  return releases.map((release) => ({ slug: release.slug }));
+  return [
+    ...releases.map((release) => ({ slug: release.slug })),
+    { slug: WHITE_RABBIT_SLUG },
+  ];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const release = getReleaseBySlug(slug);
+  const release =
+    slug === WHITE_RABBIT_SLUG
+      ? whiteRabbitRelease
+      : getReleaseBySlug(slug);
 
   if (!release) return { title: "Not Found" };
 
@@ -23,6 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: release.title,
     description: metaDescription,
+    robots: slug === WHITE_RABBIT_SLUG ? { index: false, follow: false } : undefined,
     openGraph: {
       title: `${release.title} | ${release.artist}`,
       description: metaDescription,
@@ -34,7 +45,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ReleasePage({ params }: Props) {
   const { slug } = await params;
-  const release = getReleaseBySlug(slug);
+  const release =
+    slug === WHITE_RABBIT_SLUG
+      ? whiteRabbitRelease
+      : getReleaseBySlug(slug);
 
   if (!release) notFound();
 
