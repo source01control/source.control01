@@ -35,14 +35,14 @@ export default async function JournalArticlePage({ params }: Props) {
   if (!post) notFound();
 
   return (
-    <article className="home-shell w-full">
+    <article className="home-shell w-full min-h-screen bg-[#111111]">
       <header className="border-b border-white/20 pt-24 sm:pt-28 lg:pt-32">
         <div className="px-5 sm:px-8 lg:px-10 py-12 sm:py-16 lg:py-20 max-w-4xl">
           <Link
             href="/journal"
             className="link-arrow mb-8 inline-flex"
           >
-            SIGNAL LOG
+            FIELD NOTES
           </Link>
           <div className="flex flex-wrap items-center gap-4 mb-6">
             <span className="font-[family-name:var(--font-mono)] text-[8px] tracking-[0.3em] border border-white/15 px-2 py-0.5 text-white/40">
@@ -66,12 +66,27 @@ export default async function JournalArticlePage({ params }: Props) {
           {post.body.map((paragraph, i) => (
             <p
               key={i}
-              className="font-[family-name:var(--font-mono)] text-[12px] sm:text-[13px] tracking-[0.03em] leading-[1.9] text-white/55"
+              className="font-[family-name:var(--font-mono)] text-[16px] sm:text-[17px] tracking-[0.03em] leading-[1.9] text-white/55"
             >
               {paragraph}
             </p>
           ))}
         </div>
+
+        {post.interview && post.interview.length > 0 ? (
+          <div className="mt-14 sm:mt-16 space-y-12 sm:space-y-14">
+            {post.interview.map((item, i) => (
+              <div key={i} className="space-y-4">
+                <h2 className="font-[family-name:var(--font-mono)] text-[17px] sm:text-[18px] tracking-[0.04em] leading-relaxed text-white/80">
+                  {item.question}
+                </h2>
+                <p className="font-[family-name:var(--font-mono)] text-[16px] sm:text-[17px] tracking-[0.03em] leading-[1.9] text-white/55">
+                  {item.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+        ) : null}
       </div>
     </article>
   );

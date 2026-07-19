@@ -187,41 +187,136 @@ export const journalPosts: JournalPost[] = [
   {
     id: "j-1",
     slug: "warehouse-culture",
-    title: "WAREHOUSE CULTURE IN THE POST-INDUSTRIAL GRID",
-    excerpt:
-      "How UK sound-system lineage survives inside abandoned infrastructure — and why the room is still the instrument.",
+    title: "Building Worlds Through Sound",
+    excerpt: "A conversation with Mono Code",
     category: "CULTURE",
     publishedAt: "2026-04-12",
     readTime: "8 MIN",
     body: [
-      "The warehouse is not a venue. It is a condition. Concrete, reverb, and the slow decay of fluorescent light define a sonic architecture that no festival stage can replicate.",
-      "SOURCE CONTROL operates inside this lineage — not as nostalgia, but as infrastructure.",
+      "Mono Code approaches electronic music less as a collection of genres and more as a process of world-building. His productions are shaped by travel, cinema, original sound design and a constant curiosity for discovering new perspectives through sound.",
+      "In this conversation, he reflects on the creative process behind his music, discussing atmosphere, collaboration, field recordings and the pursuit of originality, while offering an insight into the philosophy that continues to shape his evolving body of work.",
     ],
-  },
-  {
-    id: "j-2",
-    slug: "mono-code-profile",
-    title: "MONO CODE: FIRMWARE FOR THE DANCEFLOOR",
-    excerpt:
-      "Inside the Manchester producer's stripped-back approach to rhythm and cold-wave synthesis.",
-    category: "ARTIST",
-    publishedAt: "2026-03-28",
-    readTime: "6 MIN",
-    body: [
-      "Mono Code does not build tracks. They deploy updates — incremental, precise, designed to overwrite whatever the previous DJ left running.",
-    ],
-  },
-  {
-    id: "j-3",
-    slug: "sub-bass-mutations",
-    title: "SUB-BASS MUTATIONS: UK DUBSTEP AFTER THE COLLAPSE",
-    excerpt:
-      "A field report on bass music's evolution from Croydon to the brutalist periphery.",
-    category: "SIGNAL",
-    publishedAt: "2026-02-14",
-    readTime: "10 MIN",
-    body: [
-      "Sub-bass was always architecture. What changed is the city around it — denser, colder, more hostile to anything that cannot survive at low frequency.",
+    interview: [
+      {
+        question:
+          "Your music often feels cinematic without relying on obvious melodies. When you're starting a track, are you imagining a place, a scene or simply chasing a feeling?",
+        answer:
+          'Usually it\'s a feeling. Sometimes that feeling grows into a place or a scene as the track develops, but I rarely sit down thinking, "I\'m going to write music about this." It\'s more about trying to capture a mood that I can\'t really describe with words. Sometimes a scene from a film I love, or an emotion from war or politics, will create a desire to make something, but often a particular sound, melody or rhythm will spark and I\'ll build the rest of the track around that.',
+      },
+      {
+        question:
+          'You describe your music as "building stories through sound." What does storytelling mean when there are no lyrics?',
+        answer:
+          "Storytelling doesn't need words. Every sound has a character and every change in energy says something. A track can create tension, release, uncertainty or comfort without ever explaining itself. I like leaving room for the listener to project their own experiences onto my music rather than telling them exactly how they're supposed to feel while listening.",
+      },
+      {
+        question:
+          "Many producers build tracks around drops or memorable hooks. Your music seems more interested in atmosphere and gradual movement. Has that always been your approach?",
+        answer:
+          "I always loved drum and bass tracks that evolve throughout when I DJed, so that had a huge impact on my production. I will NEVER copy and paste the first and second drops.",
+      },
+      {
+        question:
+          "Space plays a huge role in your productions. Sometimes what isn't happening feels just as important as what is. How do you know when to stop adding elements?",
+        answer:
+          "Usually when adding something makes the track weaker and more muddled rather than stronger and cohesive. I try to make every sound earn its place. If an element isn't contributing to the feeling or the movement, it probably doesn't belong there. Sometimes restraint creates far more impact than another layer ever could, but I know this is something I need to improve on!",
+      },
+      {
+        question:
+          "You spend a lot of time creating and resampling your own sounds rather than relying on sample packs. How much does that process shape the identity of your music?",
+        answer:
+          'It\'s probably one of the biggest parts of it now. Designing my own sounds means they evolve alongside the track instead of feeling like something borrowed. It takes longer, but it helps the music feel more personal and gives me a palette that\'s genuinely my own. Of course sound selection plays a huge part in having your "own sound", but resampling previous tracks is essential IMO.',
+      },
+      {
+        question:
+          "You've spoken about films and travel influencing your work. Have there been particular places or experiences that have found their way directly into your productions?",
+        answer:
+          "Definitely. Travelling has changed the way I hear sound. Even if I'm not always incorporating recordings and sounds from where I am, your experiences always have a huge impact on creativity, I reckon. On my last trip to Thailand and Vietnam I started using more field recordings, as I finally invested in a decent Zoom H1 mic before I left.",
+      },
+      {
+        question:
+          "Your tracks often feel meticulously constructed, yet never clinical. How do you balance technical precision with emotion?",
+        answer:
+          "I try not to let perfection become the goal. Emotion always comes first.",
+      },
+      {
+        question:
+          "Collaboration has become a big part of your journey. What have projects like the Tech series with Unkey taught you about your own creative process?",
+        answer:
+          "Collaboration forces you to let go of your ego a little. Seeing how someone else approaches the same idea often opens avenues you wouldn't have found when producing alone.",
+      },
+      {
+        question:
+          "Do you ever begin a track knowing exactly where it's going, or do you prefer discovering it as you build?",
+        answer:
+          "Almost never. I usually start with one sound or one idea that feels exciting and follow it. Some of my favourite tracks have ended up somewhere completely different from where I thought they were heading.",
+      },
+      {
+        question:
+          "When you finish a piece of music, what tells you it's complete?",
+        answer:
+          "When I stop thinking about what it needs and start enjoying listening to it. There comes a point where any further changes aren't making it better.",
+      },
+      {
+        question:
+          "Your productions sit somewhere between dubstep, garage, techno and drum & bass without feeling tied to any of them. Do genres still have value to you, or are they simply reference points?",
+        answer:
+          "Genres are useful because they help people discover music, but I don't think about them when I'm writing. They're reference points rather than destinations. I often start dubstep tracks that turn into garage tracks, and drum and bass tracks that I think sound better as dubstep tracks.",
+      },
+      {
+        question:
+          "What role does a sound system play in your writing? Do you compose differently knowing how the music will be experienced in a club?",
+        answer:
+          "A sound system is always in the back of my mind. I want the low end to feel physical, but I also want the music to work on headphones. If a track only makes sense in one environment, I feel like it's missing something.",
+      },
+      {
+        question:
+          "You recently started incorporating field recordings into your workflow. What attracts you to everyday sounds?",
+        answer:
+          "They're unique. Everyone has access to the same synths and sample packs, but nobody hears the world in exactly the same way. Field recordings add little imperfections and textures that make a piece of music feel lived in rather than manufactured. Jon Hopkins did an interview where he explains that he always uses iPhone recordings in his music, so this was a huge influence for me to invest in a proper mic!",
+      },
+      {
+        question:
+          "If someone spent ten minutes listening to your catalogue, what would you hope they understood about you as an artist?",
+        answer:
+          "That I'm trying to build experiences rather than just tracks. I hope they hear someone who's more interested in atmosphere, detail and emotion than chasing trends or sticking to one genre.",
+      },
+      {
+        question:
+          "Your music rewards repeated listening. Is that something you consciously aim for, or does it naturally happen through your production process?",
+        answer:
+          "I think this comes back to my love for drum and bass tracks that constantly evolve and grow throughout. Those were always the tracks I relistened to personally, because you're not just listening to the same buildup and drop twice.",
+      },
+      {
+        question:
+          "What's something people often overlook when listening to your music?",
+        answer:
+          "Hard to say, because I don't have all the feedback from people who listen to my music, but I do sometimes worry that people miss the second drops in my tracks because people's attention spans are so awful now. Some of my favourite Noisia, Mefjus etc. drum and bass songs are exactly that because of the second drop, and I always try to achieve the same.",
+      },
+      {
+        question:
+          "Has there been a moment where a collaboration completely changed the way you think about making music?",
+        answer:
+          "Honestly, just the fact that Unkey wanted to collaborate in the first place was a huge moment for me. His production and the release he had with Foto Sounds felt so far above my level, so when he said we should make an EP, that was a huge confidence boost. Whenever anyone says they want to create together I feel very honoured, because I know how much energy and commitment it takes to build a track or EP.",
+      },
+      {
+        question:
+          "Technology evolves constantly, but your music often feels timeless. How do you balance innovation without simply chasing new tools or trends?",
+        answer:
+          "I love new technology, but only if it helps me express an idea better. I don't want people to remember a track because it used the latest Serum. I'd rather they remember how it made them feel.",
+      },
+      {
+        question:
+          "If your music were the soundtrack to a film, what would the audience be watching?",
+        answer:
+          "A slow-burning journey through unfamiliar places. A film that's less about action and more about atmosphere, curiosity and discovery. Starring Tom Hardy or Chris Hemsworth.",
+      },
+      {
+        question:
+          "Finally... When people leave one of your sets or finish listening to one of your records, what do you hope stays with them?",
+        answer:
+          "If someone comes back to a track months later and hears something they missed the first time, that's probably the biggest compliment I could receive.",
+      },
     ],
   },
 ];
@@ -231,6 +326,7 @@ export const navLinks = [
   { href: "/artists", label: "ARTISTS" },
   { href: "/releases", label: "RELEASES" },
   { href: "/events", label: "EVENTS" },
+  { href: "/journal", label: "FIELD NOTES" },
   { href: "/store", label: "STORE" },
   { href: "/contact", label: "CONTACT" },
 ] as const;

@@ -4,18 +4,18 @@ import { journalPosts } from "@/lib/data";
 import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Journal",
+  title: "Field Notes",
   description:
-    "SOURCE CONTROL signal log — field reports, artist profiles, and underground culture.",
+    "SOURCE CONTROL field notes — reports, artist profiles, and underground culture.",
 };
 
 export default function JournalPage() {
   return (
-    <div className="home-shell w-full">
+    <div className="home-shell w-full min-h-screen bg-[#111111]">
       <PageHeader
-        title="SIGNAL LOG"
+        title="FIELD NOTES"
         subtitle="Brutalist editorial publication. Field reports from the underground grid."
-        label="JOURNAL"
+        label="FIELD NOTES"
       />
 
       <section className="border-b border-white/20">

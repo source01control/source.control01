@@ -56,6 +56,10 @@ export type CMSJournalPost = {
   readTime: string;
   cover?: CMSImage;
   body: string[];
+  interview?: {
+    question: string;
+    answer: string;
+  }[];
 };
 
 export type CMSLabel = {
