@@ -9,7 +9,7 @@ export const whiteRabbitRelease: Release = {
   id: "sc-secret-white-rabbit",
   slug: WHITE_RABBIT_SLUG,
   catalog: "SCTRL-WR",
-  artist: "SOURCE-01-UNKNOWN",
+  artist: "SOURCE01UNKNOWN",
   title: "WHITE RABBIT",
   releaseDate: "2026-07-13",
   href: WHITE_RABBIT_HREF,

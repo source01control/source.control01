@@ -263,7 +263,7 @@ const releasesData: Omit<Release, "slug" | "href">[] = [
     alt: "SCTRL003 Dark/12 artwork",
     about:
       "Dark 12 explores two contrasting sides of Unkey's creative identity, united by a shared fascination with atmosphere, storytelling and the emotional weight of sound.\n\nOpening with Dark, the release unfolds around a haunting vocal narrative that gradually reveals itself through fractured textures, restrained percussion and cavernous low end. Rather than relying on obvious impact, the track allows tension to build through suggestion, with carefully chosen dialogue becoming inseparable from the music itself. Beneath its surface lies an exploration of parental anxiety, the imagined fear of a father confronted with the unimaginable, transforming a simple vocal sample into the emotional centre of the composition.\n\nIts counterpart, 12, shifts towards a more traditional 140 framework while remaining unmistakably rooted in Unkey's evolving sound. Driven by weighty snares, spacious arrangements and a deep, rolling groove, the track pays quiet tribute to one of the records that helped shape his own musical journey. Named after the year J:Kenzo's landmark self titled debut was released, 12 reflects the influence of an album that continues to resonate within the deeper reaches of UK bass music, while remaining firmly focused on looking forwards rather than backwards.\n\nTogether, the two tracks reveal different approaches to the same philosophy. One tells a story through atmosphere and narrative; the other revisits the foundations of the genre with renewed perspective. Both reflect Unkey's belief that evolution doesn't always require abandoning the past, sometimes it begins by seeing it differently.",
-    deck: "Two sides of Unkey — narrative atmosphere and 140 foundations.",
+    deck: "Two sides of Unkey, narrative atmosphere and 140 foundations.",
     accentGradient:
       "linear-gradient(145deg, #181012 0%, #221418 44%, #2a1a20 66%, #140e10 100%)",
     tracklist: [
@@ -355,7 +355,7 @@ const releasesData: Omit<Release, "slug" | "href">[] = [
     backgroundVideoMonochrome: true,
     about:
     "Tech One EP marks the beginning of both a creative partnership and the foundation of Source Control. Bringing together label founder Unkey and Deft Design (now Mono Code) for the first time, the three track release establishes a shared musical language built around atmosphere, tension and meticulous sound design.\n\nRather than approaching collaboration as a compromise between two styles, Tech One allows each producer's strengths to inform the other. Unkey's cinematic textures and instinct for atmosphere meet Mono Code's measured, precision led approach, creating a body of work that feels cohesive while leaving space for both identities to emerge.\n\nAcross the EP, spacious arrangements, weighty low end and carefully evolving rhythms take precedence over convention, laying the groundwork for a partnership that would continue to develop across future releases. In retrospect, Tech One captures more than the beginning of a label, it documents the first iteration of an ongoing creative dialogue between two artists committed to refinement, experimentation and continual evolution.",
-    deck: "The first Unkey and Deft Design collaboration — and the start of the label.",
+    deck: "The first Unkey and Deft Design collaboration, and the start of the label.",
     accentGradient:
       "linear-gradient(145deg, #121820 0%, #171d26 44%, #1c2430 66%, #101418 100%)",
     tracklist: [

@@ -62,7 +62,7 @@ export const artists: Artist[] = [
     name: "0079",
     slug: "0079",
     role: "SYSTEM ARCHITECT",
-    bio: "0079's production is known for intricate sound design, deep, trudging sub-bass weight, and atmospheric tension. His sound eschews bloated commercial formulas in favor of sparse, mechanical and heavy 140BPM dubstep/techno influenced rhythms tailored for proper sound systems.",
+    bio: "0079's production is known for intricate sound design, deep, trudging sub bass weight, and atmospheric tension. His sound eschews bloated commercial formulas in favor of sparse, mechanical and heavy 140BPM dubstep/techno influenced rhythms tailored for proper sound systems.",
     origin: "EAST LONDON",
     catalog: "SC_003",
     image: { url: "/images/artists/0079_SEPT_2023.jpeg.webp", alt: "0079" },
@@ -197,7 +197,7 @@ export const journalPosts: JournalPost[] = [
       alt: "Mono Code",
     },
     body: [
-      "Mono Code approaches electronic music less as a collection of genres and more as a process of world-building. His productions are shaped by travel, cinema, original sound design and a constant curiosity for discovering new perspectives through sound.",
+      "Mono Code approaches electronic music less as a collection of genres and more as a process of world building. His productions are shaped by travel, cinema, original sound design and a constant curiosity for discovering new perspectives through sound.",
       "In this conversation, he reflects on the creative process behind his music, discussing atmosphere, collaboration, field recordings and the pursuit of originality, while offering an insight into the philosophy that continues to shape his evolving body of work.",
     ],
     interview: [
@@ -313,7 +313,7 @@ export const journalPosts: JournalPost[] = [
         question:
           "If your music were the soundtrack to a film, what would the audience be watching?",
         answer:
-          "A slow-burning journey through unfamiliar places. A film that's less about action and more about atmosphere, curiosity and discovery. Starring Tom Hardy or Chris Hemsworth.",
+          "A slow burning journey through unfamiliar places. A film that's less about action and more about atmosphere, curiosity and discovery. Starring Tom Hardy or Chris Hemsworth.",
       },
       {
         question:

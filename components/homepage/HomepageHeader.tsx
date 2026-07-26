@@ -16,7 +16,7 @@ export function HomepageHeader() {
     <>
       <header
         className={cn(
-          "site-header-bar absolute inset-x-0 top-0 z-[150] transition-all duration-500",
+          "site-header-bar fixed top-0 left-0 right-0 z-[150] transition-all duration-500",
           scrolled && !menuOpen && "site-header-bar--transparent"
         )}
       >
@@ -64,7 +64,7 @@ export function HomepageHeader() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
-            className="fixed inset-0 z-40 bg-black"
+            className="fixed inset-0 z-[140] bg-black"
           >
             <nav
               className="flex flex-col justify-center h-full px-8 gap-6"

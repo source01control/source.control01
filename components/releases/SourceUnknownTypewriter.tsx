@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
-export const SOURCE_UNKNOWN_MESSAGE = "SOURCE-01-UNKNOWN";
+export const SOURCE_UNKNOWN_MESSAGE = "SOURCE01UNKNOWN";
 const TYPE_INTERVAL_MS = 95;
 const START_DELAY_MS = 500;
 

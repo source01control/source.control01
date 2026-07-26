@@ -276,11 +276,16 @@
 /* Site header bar */
 .site-header-bar {
   background: #111111;
-  transition: background-color 0.4s ease;
+  transition:
+    background-color 0.4s ease,
+    backdrop-filter 0.4s ease,
+    -webkit-backdrop-filter 0.4s ease;
 }
 
 .site-header-bar--transparent {
-  background: rgba(17, 17, 17, 0.15);
+  background: rgba(17, 17, 17, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .release-detail-header-offset {
@@ -1392,10 +1397,6 @@ body.release-page-with-video .site-header-bar {
 /* Home */
 .home-page {
   background: #0a0a0a;
-}
-
-body:has(.home-page) .site-header-bar--transparent {
-  background: #111111;
 }
 
 .home-hero {
@@ -2618,7 +2619,7 @@ body:has(.home-page) .site-header-bar--transparent {
 .tech-two-white-rabbit__overlay {
   position: fixed;
   inset: 0;
-  z-index: 300;
+  z-index: 400;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2873,6 +2874,19 @@ body:has(.home-page) .site-header-bar--transparent {
   background: #000;
 }
 
+/* Hide site chrome until page reveal with the rest of the secret page */
+body:has(.white-rabbit-page-enter--boot) .site-header-bar,
+body:has(.white-rabbit-page-enter--intro) .site-header-bar {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: none !important;
+}
+
+body:has(.white-rabbit-page-enter--revealed) .site-header-bar {
+  opacity: 1;
+  transition: opacity 1.2s ease;
+}
+
 .white-rabbit-page-enter__boot {
   min-height: 100vh;
   background: #000;
@@ -2909,6 +2923,9 @@ body:has(.home-page) .site-header-bar--transparent {
   }
 
   .white-rabbit-veil,
+  body:has(.white-rabbit-page-enter--boot) .site-header-bar,
+  body:has(.white-rabbit-page-enter--intro) .site-header-bar,
+  body:has(.white-rabbit-page-enter--revealed) .site-header-bar,
   .white-rabbit-page-enter--intro .releases-article__back,
   .white-rabbit-page-enter--intro .releases-article__title,
   .white-rabbit-page-enter--intro .releases-article__deck,
@@ -2933,7 +2950,7 @@ body:has(.home-page) .site-header-bar--transparent {
 }
 
 body:has(.field-notes-page) .site-header-bar--transparent {
-  background: #111111;
+  background: rgba(17, 17, 17, 0.55);
 }
 
 .field-notes-hero {
@@ -3349,7 +3366,7 @@ body:has(.field-notes-page) .site-header-bar--transparent {
 }
 
 body:has(.releases-page) .site-header-bar--transparent {
-  background: #111111;
+  background: rgba(17, 17, 17, 0.55);
 }
 
 .releases-page__hero {
@@ -4060,7 +4077,7 @@ body.release-page-with-video .site-header-bar--transparent {
 }
 
 body:has(.store-page--editorial) .site-header-bar--transparent {
-  background: #111111;
+  background: rgba(17, 17, 17, 0.55);
 }
 
 .store-page__hero {
