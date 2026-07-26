@@ -27,9 +27,16 @@ const FULL_PAGE_LAYERS = [
   },
 ] as const;
 
-export function GlitchOverlay() {
+type GlitchOverlayProps = {
+  className?: string;
+};
+
+export function GlitchOverlay({ className }: GlitchOverlayProps) {
   return (
-    <div className="glitch-overlay" aria-hidden="true">
+    <div
+      className={["glitch-overlay", className].filter(Boolean).join(" ")}
+      aria-hidden="true"
+    >
       <div className="glitch-overlay__noise" />
       <div className="glitch-overlay__scanlines" />
       <div className="glitch-overlay__rgb" />

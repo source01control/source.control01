@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { journalPosts } from "@/lib/data";
@@ -28,6 +29,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+function formatPublishedDate(iso: string): string {
+  const date = new Date(`${iso}T12:00:00`);
+  return date.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+}
+
 export default async function JournalArticlePage({ params }: Props) {
   const { slug } = await params;
   const post = journalPosts.find((p) => p.slug === slug);
@@ -35,58 +45,63 @@ export default async function JournalArticlePage({ params }: Props) {
   if (!post) notFound();
 
   return (
-    <article className="home-shell w-full min-h-screen bg-[#111111]">
-      <header className="border-b border-white/20 pt-24 sm:pt-28 lg:pt-32">
-        <div className="px-5 sm:px-8 lg:px-10 py-12 sm:py-16 lg:py-20 max-w-4xl">
-          <Link
-            href="/journal"
-            className="link-arrow mb-8 inline-flex"
-          >
-            FIELD NOTES
-          </Link>
-          <div className="flex flex-wrap items-center gap-4 mb-6">
-            <span className="font-[family-name:var(--font-mono)] text-[8px] tracking-[0.3em] border border-white/15 px-2 py-0.5 text-white/40">
-              {post.category}
-            </span>
-            <span className="font-[family-name:var(--font-mono)] text-[8px] tracking-[0.2em] text-white/25">
-              {post.publishedAt.replace(/-/g, ".")} · {post.readTime}
-            </span>
+    <article className="field-notes-page field-notes-article w-full min-h-screen">
+      <div className="field-notes-article__top">
+        <Link href="/journal" className="field-notes-back">
+          <span aria-hidden="true">←</span> Field Notes
+        </Link>
+
+        <h1 className="field-notes-article__title">{post.title}</h1>
+        <p className="field-notes-article__deck">{post.excerpt}</p>
+      </div>
+
+      {post.cover ? (
+        <div className="field-notes-article__hero">
+          <div className="field-notes-article__hero-frame">
+            <Image
+              src={post.cover.url}
+              alt={post.cover.alt}
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
           </div>
-          <h1 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,8vw,5.5rem)] leading-[0.88] tracking-[0.03em]">
-            {post.title}
-          </h1>
-          <p className="mt-8 font-[family-name:var(--font-mono)] text-[11px] tracking-[0.06em] leading-relaxed text-white/45">
-            {post.excerpt}
-          </p>
         </div>
-      </header>
+      ) : null}
 
-      <div className="px-5 sm:px-8 lg:px-10 py-12 sm:py-16 lg:py-20 max-w-3xl border-b border-white/20">
-        <div className="space-y-8">
-          {post.body.map((paragraph, i) => (
-            <p
-              key={i}
-              className="font-[family-name:var(--font-mono)] text-[16px] sm:text-[17px] tracking-[0.03em] leading-[1.9] text-white/55"
-            >
-              {paragraph}
+      <div className="field-notes-article__main">
+        <aside className="field-notes-article__meta" aria-label="Article details">
+          <div className="field-notes-article__meta-block">
+            <p className="field-notes-article__meta-label">Words</p>
+            <p className="field-notes-article__meta-value">Source Control</p>
+          </div>
+          <div className="field-notes-article__meta-block">
+            <p className="field-notes-article__meta-label">Published</p>
+            <p className="field-notes-article__meta-value">
+              {formatPublishedDate(post.publishedAt)}
             </p>
-          ))}
-        </div>
+          </div>
+        </aside>
 
-        {post.interview && post.interview.length > 0 ? (
-          <div className="mt-14 sm:mt-16 space-y-12 sm:space-y-14">
-            {post.interview.map((item, i) => (
-              <div key={i} className="space-y-4">
-                <h2 className="font-[family-name:var(--font-mono)] text-[17px] sm:text-[18px] tracking-[0.04em] leading-relaxed text-white/80">
-                  {item.question}
-                </h2>
-                <p className="font-[family-name:var(--font-mono)] text-[16px] sm:text-[17px] tracking-[0.03em] leading-[1.9] text-white/55">
-                  {item.answer}
-                </p>
-              </div>
+        <div className="field-notes-article__content">
+          <div className="field-notes-article__intro">
+            {post.body.map((paragraph, i) => (
+              <p key={i}>{paragraph}</p>
             ))}
           </div>
-        ) : null}
+
+          {post.interview && post.interview.length > 0 ? (
+            <div className="field-notes-interview">
+              {post.interview.map((item, i) => (
+                <div key={i} className="field-notes-interview__item">
+                  <h2>{item.question}</h2>
+                  <p>{item.answer}</p>
+                </div>
+              ))}
+            </div>
+          ) : null}
+        </div>
       </div>
     </article>
   );

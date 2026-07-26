@@ -100,17 +100,11 @@ export function StoreProductCard({ product }: StoreProductCardProps) {
 
       <div className="store-product-card__body">
         <p className="store-product-card__format font-[family-name:var(--font-mono)]">
-          {formatLabel}
+          {product.catalog ? `${formatLabel} · ${product.catalog}` : formatLabel}
         </p>
 
-        {product.catalog ? (
-          <p className="store-product-card__catalog font-[family-name:var(--font-mono)]">
-            {product.catalog}
-          </p>
-        ) : null}
-
         <h2 className="store-product-card__title font-[family-name:var(--font-display)] uppercase text-white">
-          {product.title}
+          <Link href={getStoreProductPath(product.id)}>{product.title}</Link>
         </h2>
 
         {product.artist && !isSamplePack ? (

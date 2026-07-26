@@ -192,6 +192,10 @@ export const journalPosts: JournalPost[] = [
     category: "CULTURE",
     publishedAt: "2026-04-12",
     readTime: "8 MIN",
+    cover: {
+      url: "/images/artists/mono code dj.webp",
+      alt: "Mono Code",
+    },
     body: [
       "Mono Code approaches electronic music less as a collection of genres and more as a process of world-building. His productions are shaped by travel, cinema, original sound design and a constant curiosity for discovering new perspectives through sound.",
       "In this conversation, he reflects on the creative process behind his music, discussing atmosphere, collaboration, field recordings and the pursuit of originality, while offering an insight into the philosophy that continues to shape his evolving body of work.",

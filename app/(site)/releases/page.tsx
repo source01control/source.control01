@@ -8,9 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function ReleasesPage() {
-  return (
-    <div className="w-full">
-      <ReleaseArchive />
-    </div>
-  );
+  return <ReleaseArchive />;
 }

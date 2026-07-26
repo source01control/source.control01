@@ -11,10 +11,10 @@ import { StoreProductCard } from "./StoreProductCard";
 import { cn } from "@/lib/utils";
 
 const sortOptions: { id: StoreSort; label: string }[] = [
-  { id: "newest", label: "NEWEST" },
-  { id: "price-asc", label: "PRICE: LOW TO HIGH" },
-  { id: "price-desc", label: "PRICE: HIGH TO LOW" },
-  { id: "title", label: "TITLE A–Z" },
+  { id: "newest", label: "Newest" },
+  { id: "price-asc", label: "Price: Low to High" },
+  { id: "price-desc", label: "Price: High to Low" },
+  { id: "title", label: "Title A–Z" },
 ];
 
 export function StoreCatalog() {
@@ -31,63 +31,52 @@ export function StoreCatalog() {
   );
 
   return (
-    <div className="store-catalog">
-      <aside className="store-sidebar" aria-label="Store categories">
-        <section className="store-sidebar__section">
-          <h2 className="store-sidebar__heading section-label">CATEGORIES</h2>
-          <ul className="store-sidebar__list">
-            {storeCategories.map((item) => (
-              <li key={item.id}>
-                <button
-                  type="button"
-                  onClick={() => setCategory(item.id)}
-                  className={cn(
-                    "store-sidebar__link font-[family-name:var(--font-mono)]",
-                    category === item.id && "store-sidebar__link--active"
-                  )}
-                >
-                  {item.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </section>
-      </aside>
-
-      <section className="store-main" aria-label="Products">
-        <div className="store-main__toolbar">
-          <p className="store-main__count font-[family-name:var(--font-mono)] uppercase">
-            {products.length} PRODUCTS
-          </p>
-          <label className="store-main__sort font-[family-name:var(--font-mono)] uppercase">
-            <span>SORT BY:</span>
-            <select
-              value={sort}
-              onChange={(event) => setSort(event.target.value as StoreSort)}
-              className="store-main__sort-select"
-              aria-label="Sort products"
+    <div className="store-page__content">
+      <div className="store-page__controls">
+        <nav className="store-page__categories" aria-label="Store categories">
+          {storeCategories.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => setCategory(item.id)}
+              className={cn(
+                "store-page__category",
+                category === item.id && "store-page__category--active"
+              )}
             >
-              {sortOptions.map((option) => (
-                <option key={option.id} value={option.id}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
+              <span aria-hidden="true">/</span> {item.label}
+            </button>
+          ))}
+        </nav>
 
-        {products.length > 0 ? (
-          <div className="store-grid">
+        <label className="store-page__sort">
+          <span>Sort</span>
+          <select
+            value={sort}
+            onChange={(event) => setSort(event.target.value as StoreSort)}
+            className="store-page__sort-select"
+            aria-label="Sort products"
+          >
+            {sortOptions.map((option) => (
+              <option key={option.id} value={option.id}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+
+      {products.length > 0 ? (
+        <section className="store-page__section" aria-label="Products">
+          <div className="store-page__grid">
             {products.map((product) => (
               <StoreProductCard key={product.id} product={product} />
             ))}
           </div>
-        ) : (
-          <p className="store-main__empty font-[family-name:var(--font-mono)] uppercase">
-            No products match your filters.
-          </p>
-        )}
-      </section>
+        </section>
+      ) : (
+        <p className="store-page__empty">No products match your filters.</p>
+      )}
     </div>
   );
 }

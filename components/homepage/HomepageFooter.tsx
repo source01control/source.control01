@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function HomepageFooter() {
   return (
-    <footer className="relative z-[110] border-t border-white/15 bg-black">
+    <footer className="relative z-[110] bg-[#0a0a0a]">
       <div className="flex flex-col gap-4 px-5 sm:px-8 lg:px-12 py-5 sm:py-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="font-[family-name:var(--font-mono)] text-[9px] sm:text-[10px] tracking-[0.22em] uppercase text-white/60 sm:text-left text-center">
           EST 2025

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { journalPosts } from "@/lib/data";
-import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
   title: "Field Notes",
@@ -9,51 +9,108 @@ export const metadata: Metadata = {
     "SOURCE CONTROL field notes — reports, artist profiles, and underground culture.",
 };
 
-export default function JournalPage() {
-  return (
-    <div className="home-shell w-full min-h-screen bg-[#111111]">
-      <PageHeader
-        title="FIELD NOTES"
-        subtitle="Brutalist editorial publication. Field reports from the underground grid."
-        label="FIELD NOTES"
-      />
+function formatFeatureDate(iso: string): string {
+  const date = new Date(`${iso}T12:00:00`);
+  return date
+    .toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    })
+    .toUpperCase();
+}
 
-      <section className="border-b border-white/20">
-        {journalPosts.map((post, i) => (
-          <article
-            key={post.id}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 px-5 sm:px-8 lg:px-10 py-10 sm:py-14 border-t border-white/20 first:border-t-0 hover:bg-white/[0.02] transition-colors group"
-          >
-            <div className="lg:col-span-1">
-              <p className="font-[family-name:var(--font-mono)] text-[9px] tracking-[0.35em] text-white/25">
-                {String(i + 1).padStart(2, "0")}
-              </p>
-            </div>
-            <div className="lg:col-span-2">
-              <span className="inline-block font-[family-name:var(--font-mono)] text-[8px] tracking-[0.3em] border border-white/15 px-2 py-0.5 text-white/40">
-                {post.category}
-              </span>
-              <p className="mt-4 font-[family-name:var(--font-mono)] text-[8px] tracking-[0.15em] text-white/25">
-                {post.publishedAt.replace(/-/g, ".")}
-              </p>
-              <p className="font-[family-name:var(--font-mono)] text-[8px] tracking-[0.15em] text-white/20">
-                {post.readTime}
-              </p>
-            </div>
-            <div className="lg:col-span-9">
-              <Link href={`/journal/${post.slug}`}>
-                <h2 className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl lg:text-6xl tracking-[0.04em] leading-[0.9] group-hover:translate-x-0.5 transition-transform duration-200">
-                  {post.title}
-                </h2>
-                <p className="mt-4 font-[family-name:var(--font-mono)] text-[11px] tracking-[0.04em] leading-relaxed text-white/45 max-w-2xl">
-                  {post.excerpt}
+export default function JournalPage() {
+  const [featured, ...rest] = journalPosts;
+
+  return (
+    <div className="field-notes-page w-full min-h-screen">
+      <header className="field-notes-hero">
+        <div className="field-notes-hero__inner">
+          <h1 className="field-notes-hero__title">Field Notes</h1>
+        </div>
+      </header>
+
+      <div className="field-notes-content">
+        {featured ? (
+          <section className="field-notes-section" aria-label="Featured">
+            <h2 className="field-notes-section__label">
+              <span aria-hidden="true">/</span> Featured
+            </h2>
+
+            <Link
+              href={`/journal/${featured.slug}`}
+              className="field-notes-featured group"
+            >
+              <div className="field-notes-featured__media">
+                {featured.cover ? (
+                  <Image
+                    src={featured.cover.url}
+                    alt={featured.cover.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1023px) 100vw, 55vw"
+                    priority
+                  />
+                ) : (
+                  <div className="field-notes-featured__placeholder" />
+                )}
+              </div>
+              <div className="field-notes-featured__copy">
+                <p className="field-notes-meta">
+                  {formatFeatureDate(featured.publishedAt)}
                 </p>
-                <p className="mt-6 link-arrow">READ ENTRY</p>
-              </Link>
-            </div>
-          </article>
-        ))}
-      </section>
+                <h3 className="field-notes-featured__title">{featured.title}</h3>
+                <p className="field-notes-featured__excerpt">{featured.excerpt}</p>
+                <p className="field-notes-featured__byline">Source Control</p>
+              </div>
+            </Link>
+          </section>
+        ) : null}
+
+        {rest.length > 0 ? (
+          <section className="field-notes-section" aria-label="Latest">
+            <h2 className="field-notes-section__label">
+              <span aria-hidden="true">/</span> Latest
+            </h2>
+            <ul className="field-notes-list">
+              {rest.map((post) => (
+                <li key={post.id}>
+                  <Link
+                    href={`/journal/${post.slug}`}
+                    className="field-notes-list-item group"
+                  >
+                    <div className="field-notes-list-item__media">
+                      {post.cover ? (
+                        <Image
+                          src={post.cover.url}
+                          alt={post.cover.alt}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 639px) 40vw, 220px"
+                        />
+                      ) : (
+                        <div className="field-notes-featured__placeholder" />
+                      )}
+                    </div>
+                    <div className="field-notes-list-item__copy">
+                      <p className="field-notes-meta">
+                        {formatFeatureDate(post.publishedAt)}
+                      </p>
+                      <h3 className="field-notes-list-item__title">
+                        {post.title}
+                      </h3>
+                      <p className="field-notes-list-item__excerpt">
+                        {post.excerpt}
+                      </p>
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+      </div>
     </div>
   );
 }

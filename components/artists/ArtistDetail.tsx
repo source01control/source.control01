@@ -113,12 +113,11 @@ export function ArtistDetail({ artist }: ArtistDetailProps) {
             <ArtistReleasesHero
               artistName={formatArtistName(artist.name)}
               releases={artistReleases}
-              secondaryColumn={
-                artistNetwork ? (
-                  <ArtistNetworkColumn network={artistNetwork} />
-                ) : undefined
-              }
             />
+          ) : null}
+
+          {artistNetwork && artistNetwork.links.length > 0 ? (
+            <ArtistNetworkColumn network={artistNetwork} />
           ) : null}
 
           {artistNetwork?.spotifyEmbed ? (

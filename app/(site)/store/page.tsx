@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function StorePage() {
   return (
-    <div className="store-page w-full bg-black">
+    <div className="store-page store-page--editorial w-full min-h-screen">
       <StoreHero />
       <StoreCatalog />
     </div>
