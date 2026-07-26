@@ -67,7 +67,7 @@ export function HomepageHeader() {
             className="fixed inset-0 z-[140] bg-black"
           >
             <nav
-              className="flex flex-col justify-center h-full px-8 gap-6"
+              className="box-border flex h-full flex-col justify-center gap-6 overflow-y-auto px-8 pt-28 pb-12 sm:pt-32"
               aria-label="Primary"
             >
               {homepageNav.map((item, i) => (

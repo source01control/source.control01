@@ -75,7 +75,8 @@ export function Header() {
           >
             <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-black to-[#0d1117] opacity-90" />
 
-            <div className="relative flex-1 flex flex-col justify-center home-shell w-full px-5 sm:px-8 lg:px-10">
+            <div className="relative flex-1 overflow-y-auto">
+              <div className="flex min-h-full flex-col justify-center home-shell w-full px-5 sm:px-8 lg:px-10 pt-28 pb-12 sm:pt-32">
               <ul className="space-y-2 sm:space-y-4">
                 {navLinks.map((link, i) => (
                   <motion.li
@@ -97,6 +98,7 @@ export function Header() {
                   </motion.li>
                 ))}
               </ul>
+              </div>
             </div>
           </motion.nav>
         )}
