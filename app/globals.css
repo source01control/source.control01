@@ -2603,13 +2603,13 @@ body:has(.home-page) .site-header-bar--transparent {
   pointer-events: none;
 }
 
-.tech-two-white-rabbit__page--content-hidden .release-detail-foreground {
+.tech-two-white-rabbit__page--content-hidden .releases-article__foreground {
   opacity: 0;
   pointer-events: none;
   transition: none;
 }
 
-.tech-two-white-rabbit__page--content-in .release-detail-foreground {
+.tech-two-white-rabbit__page--content-in .releases-article__foreground {
   opacity: 1;
   pointer-events: auto;
   transition: opacity 0.4s ease;
@@ -2668,7 +2668,7 @@ body:has(.home-page) .site-header-bar--transparent {
 @media (prefers-reduced-motion: reduce) {
   .tech-two-white-rabbit__page,
   .tech-two-white-rabbit__overlay,
-  .tech-two-white-rabbit__page--content-in .release-detail-foreground {
+  .tech-two-white-rabbit__page--content-in .releases-article__foreground {
     transition: none;
   }
 }
@@ -2726,6 +2726,21 @@ body:has(.home-page) .site-header-bar--transparent {
 }
 
 .release-detail--white-rabbit .release-detail-bg-video__media {
+  opacity: 0.55;
+}
+
+.releases-article--white-rabbit {
+  background: transparent !important;
+}
+
+.releases-article--white-rabbit .releases-article__top,
+.releases-article--white-rabbit .releases-article__hero,
+.releases-article--white-rabbit .releases-article__hero-frame,
+.releases-article--white-rabbit .releases-article__main {
+  background: transparent !important;
+}
+
+.releases-article--white-rabbit .release-detail-bg-video__media {
   opacity: 0.55;
 }
 
@@ -2793,6 +2808,11 @@ body:has(.home-page) .site-header-bar--transparent {
 .matrix-search-transition {
   position: fixed;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
   z-index: 500;
   overflow: hidden;
   background: #000;
@@ -2811,9 +2831,17 @@ body:has(.home-page) .site-header-bar--transparent {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   background: #000;
   opacity: 1;
-  transition: opacity 1.2s ease;
+  transition: opacity 0.45s ease;
+}
+
+@media (max-width: 768px) {
+  .matrix-search-transition__video {
+    /* Show the full transition frame on portrait screens */
+    object-fit: contain;
+  }
 }
 
 .matrix-search-transition--fading .matrix-search-transition__video {
@@ -2850,20 +2878,22 @@ body:has(.home-page) .site-header-bar--transparent {
   background: #000;
 }
 
-/* Keep layout; only Source Unknown is visible during intro */
-.white-rabbit-page-enter--intro .release-detail-artwork,
-.white-rabbit-page-enter--intro .release-detail-divider,
-.white-rabbit-page-enter--intro .release-detail-title,
-.white-rabbit-page-enter--intro .release-detail-bottom,
+/* Keep layout; only SOURCE-01-UNKNOWN is visible during intro */
+.white-rabbit-page-enter--intro .releases-article__back,
+.white-rabbit-page-enter--intro .releases-article__title,
+.white-rabbit-page-enter--intro .releases-article__deck,
+.white-rabbit-page-enter--intro .releases-article__hero,
+.white-rabbit-page-enter--intro .releases-article__main,
 .white-rabbit-page-enter--intro .release-detail-bg-video {
   opacity: 0 !important;
   pointer-events: none;
 }
 
-.white-rabbit-page-enter--revealed .release-detail-artwork,
-.white-rabbit-page-enter--revealed .release-detail-divider,
-.white-rabbit-page-enter--revealed .release-detail-title,
-.white-rabbit-page-enter--revealed .release-detail-bottom,
+.white-rabbit-page-enter--revealed .releases-article__back,
+.white-rabbit-page-enter--revealed .releases-article__title,
+.white-rabbit-page-enter--revealed .releases-article__deck,
+.white-rabbit-page-enter--revealed .releases-article__hero,
+.white-rabbit-page-enter--revealed .releases-article__main,
 .white-rabbit-page-enter--revealed .release-detail-bg-video {
   opacity: 1;
   transition: opacity 1.2s ease;
@@ -2879,15 +2909,17 @@ body:has(.home-page) .site-header-bar--transparent {
   }
 
   .white-rabbit-veil,
-  .white-rabbit-page-enter--intro .release-detail-artwork,
-  .white-rabbit-page-enter--intro .release-detail-divider,
-  .white-rabbit-page-enter--intro .release-detail-title,
-  .white-rabbit-page-enter--intro .release-detail-bottom,
+  .white-rabbit-page-enter--intro .releases-article__back,
+  .white-rabbit-page-enter--intro .releases-article__title,
+  .white-rabbit-page-enter--intro .releases-article__deck,
+  .white-rabbit-page-enter--intro .releases-article__hero,
+  .white-rabbit-page-enter--intro .releases-article__main,
   .white-rabbit-page-enter--intro .release-detail-bg-video,
-  .white-rabbit-page-enter--revealed .release-detail-artwork,
-  .white-rabbit-page-enter--revealed .release-detail-divider,
-  .white-rabbit-page-enter--revealed .release-detail-title,
-  .white-rabbit-page-enter--revealed .release-detail-bottom,
+  .white-rabbit-page-enter--revealed .releases-article__back,
+  .white-rabbit-page-enter--revealed .releases-article__title,
+  .white-rabbit-page-enter--revealed .releases-article__deck,
+  .white-rabbit-page-enter--revealed .releases-article__hero,
+  .white-rabbit-page-enter--revealed .releases-article__main,
   .white-rabbit-page-enter--revealed .release-detail-bg-video {
     transition: none !important;
     opacity: 1 !important;

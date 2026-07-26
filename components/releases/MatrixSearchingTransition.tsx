@@ -4,11 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import {
   ensureWhiteRabbitVeil,
   markWhiteRabbitEnterFade,
-  WHITE_RABBIT_FADE_MS,
 } from "@/lib/white-rabbit-transition";
 
 export const WHITE_RABBIT_TRANSITION_SRC =
   "/videos/releases/white-rabbit-transition.mp4";
+
+/** Brief black hold after the clip ends, before route change. */
+const POST_END_HOLD_MS = 280;
 
 type MatrixSearchingTransitionProps = {
   active: boolean;
@@ -58,8 +60,9 @@ export function MatrixSearchingTransition({
       };
     }
 
-    let fadeTimer: number | undefined;
-    let fadeStarted = false;
+    let endTimer: number | undefined;
+    let safetyTimer: number | undefined;
+    let closing = false;
 
     const finish = () => {
       if (finishedRef.current) return;
@@ -69,30 +72,36 @@ export function MatrixSearchingTransition({
       onCompleteRef.current();
     };
 
-    const beginFadeOut = () => {
-      if (fadeStarted || finishedRef.current) return;
-      fadeStarted = true;
+    const closeAfterPlayback = () => {
+      if (closing || finishedRef.current) return;
+      closing = true;
       ensureWhiteRabbitVeil();
       setFading(true);
-      fadeTimer = window.setTimeout(finish, WHITE_RABBIT_FADE_MS);
+      endTimer = window.setTimeout(finish, POST_END_HOLD_MS);
     };
 
-    const onTimeUpdate = () => {
-      if (!Number.isFinite(video.duration) || video.duration <= 0) return;
-      const remaining = video.duration - video.currentTime;
-      if (remaining <= WHITE_RABBIT_FADE_MS / 1000) {
-        beginFadeOut();
-      }
-    };
-
-    const onEnded = () => beginFadeOut();
+    const onEnded = () => closeAfterPlayback();
     const onError = () => finish();
 
-    video.addEventListener("timeupdate", onTimeUpdate);
+    const armSafetyFromDuration = () => {
+      if (safetyTimer) window.clearTimeout(safetyTimer);
+      if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+      // Fallback if `ended` never fires on some mobile browsers
+      safetyTimer = window.setTimeout(
+        () => closeAfterPlayback(),
+        Math.ceil(video.duration * 1000) + 250
+      );
+    };
+
+    const onLoadedMetadata = () => armSafetyFromDuration();
+
     video.addEventListener("ended", onEnded);
     video.addEventListener("error", onError);
+    video.addEventListener("loadedmetadata", onLoadedMetadata);
     video.currentTime = 0;
     video.muted = false;
+
+    if (video.readyState >= 1) armSafetyFromDuration();
 
     const attempt = video.play();
     if (attempt) {
@@ -103,10 +112,11 @@ export function MatrixSearchingTransition({
     }
 
     return () => {
-      video.removeEventListener("timeupdate", onTimeUpdate);
       video.removeEventListener("ended", onEnded);
       video.removeEventListener("error", onError);
-      if (fadeTimer) window.clearTimeout(fadeTimer);
+      video.removeEventListener("loadedmetadata", onLoadedMetadata);
+      if (endTimer) window.clearTimeout(endTimer);
+      if (safetyTimer) window.clearTimeout(safetyTimer);
       video.pause();
       document.body.style.overflow = previousOverflow;
     };

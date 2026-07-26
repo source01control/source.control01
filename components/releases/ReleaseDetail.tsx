@@ -147,7 +147,9 @@ export function ReleaseDetail({ release }: ReleaseDetailProps) {
         >
           {release.title}
         </h1>
-        <p className="releases-article__deck">{getReleaseDeck(release)}</p>
+        {!isWhiteRabbit ? (
+          <p className="releases-article__deck">{getReleaseDeck(release)}</p>
+        ) : null}
       </div>
 
       <div className="releases-article__hero">

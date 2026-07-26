@@ -36,16 +36,27 @@ export function TechTwoSecretRabbit({ active }: TechTwoSecretRabbitProps) {
 
     let cancelled = false;
     const timers: number[] = [];
-    let hop = 0;
+    let lastIndex = -1;
 
     const wait = (ms: number) =>
       new Promise<void>((resolve) => {
         timers.push(window.setTimeout(resolve, ms));
       });
 
-    const runHop = async (index: number) => {
+    const pickRandomCorner = () => {
+      if (SPOTS.length <= 1) return 0;
+      let next = Math.floor(Math.random() * SPOTS.length);
+      // Avoid landing on the same corner twice in a row
+      if (next === lastIndex) {
+        next = (next + 1 + Math.floor(Math.random() * (SPOTS.length - 1))) % SPOTS.length;
+      }
+      lastIndex = next;
+      return next;
+    };
+
+    const runHop = async () => {
       if (cancelled) return;
-      setSpotIndex(index);
+      setSpotIndex(pickRandomCorner());
       setVisible(true);
       setFlashing(true);
       await wait(180);
@@ -66,8 +77,7 @@ export function TechTwoSecretRabbit({ active }: TechTwoSecretRabbitProps) {
     void (async () => {
       await wait(700);
       while (!cancelled) {
-        await runHop(hop % SPOTS.length);
-        hop += 1;
+        await runHop();
       }
     })();
 
